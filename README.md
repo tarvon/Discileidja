@@ -1,2 +1,2 @@
 # Veebirakendus
-Git working for Helen ja Silver
+Git working for Helen and Silver
