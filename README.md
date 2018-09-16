@@ -1,2 +1,2 @@
-# Veebirakendus
-Git working for Helen and Silver
+# Discileidja
+Readme täieneb projekti edenemisel...
