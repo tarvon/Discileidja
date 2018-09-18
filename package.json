@@ -6,12 +6,33 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bootstrap": "^4.1.3",
     "connect": "^3.6.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
     "morgan": "~1.9.0",
+    "popper.js": "^1.14.4",
     "pug": "2.0.0-beta11"
-  }
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.7",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
+  },
+  "description": "Readme täieneb projekti edenemisel...",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarvon/Discileidja.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarvon/Discileidja/issues"
+  },
+  "homepage": "https://github.com/tarvon/Discileidja#readme"
 }
