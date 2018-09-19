@@ -3,12 +3,10 @@
 /**
  * Module dependencies.
  */
-let express = require("express");
-let app = express();
-let debug = require('debug')('untitled:server');
-let http = require('http');
-let path = __dirname + '/views/';
-let router = express.Router();
+var express = require("express");
+var app = express();
+var router = express.Router();
+var path = __dirname + '/views/';
 
 //print the type of HTTP request
 
@@ -46,13 +44,6 @@ router.get("/",function(req,res){
     res.sendFile(path + "index.html");
 });
 
-router.get("/about",function(req,res){
-    res.sendFile(path + "about.html");
-});
-
-router.get("/contact",function(req,res){
-    res.sendFile(path + "contact.html");
-});
 
 app.use(express.static(__dirname + "/views"));
 
