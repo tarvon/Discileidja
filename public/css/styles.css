@@ -3,6 +3,13 @@
     background-size: cover;
 }
 
+.header-main{
+    justify-content: center;
+    background: darkgreen;
+    color: white;
+    padding: 0.32em;
+}
+
 .btn-facebook {
     color: #fff;
     background-color: #3b5998;
