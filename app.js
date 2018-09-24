@@ -3,14 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 app.use('/', indexRouter);
+app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
+
+const server = app.listen(3000, () => {
+    console.log(`Express is running on port ${server.address().port}`);
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 /*
 
