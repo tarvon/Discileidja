@@ -1,6 +1,11 @@
 .big-banner{
     background-image: url("../images/taust.jpg");
     background-size: cover;
+    position:fixed;
+    padding:0;
+    margin:0;
+    width: 100%;
+    height: 100%;
 }
 
 .header-main{
