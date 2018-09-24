@@ -1,5 +1,6 @@
 .big-banner{
-    background-image: url("/public/images/taust.jpg");
+    background-image: url("../images/taust.jpg");
+    background-size: cover;
 }
 
 .btn-facebook {
