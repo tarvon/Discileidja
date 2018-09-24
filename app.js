@@ -13,11 +13,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.use('/', indexRouter);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 module.exports = app;
 
-const server = app.listen(8081, () => {
+//aws: 8081;local: 3000
+const server = app.listen(3000, () => {
     console.log(`Express is running on port ${server.address().port}`);
 });
 
