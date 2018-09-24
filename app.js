@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 module.exports = app;
 
 //aws: 8081;local: 3000
-const server = app.listen(3000, () => {
+const server = app.listen(8081, () => {
     console.log(`Express is running on port ${server.address().port}`);
 });
 
