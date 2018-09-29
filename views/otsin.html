@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discileidja</title>
+    <link rel="icon" href="images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/styles.css" rel="stylesheet" media="all" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1020344370651-cpvtmd5bbgvc60uofucd7j3lv65qkdnn.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<header>
+    <h1 class="page-header nav header-main"><a href="/" style="text-decoration:none; color:white">Discileidja</a></h1>
+</header>
+<nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--style="display: flex; justify-content: center; flex-wrap: wrap"-->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/leidsin">Leidsin<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/otsin">Otsin</a>
+            </li>
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/abi">Abi</a>
+            </li>
+            <li class="nav-item dropdown"  style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profiil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/profiil">Seaded</a>
+                    <a class="dropdown-item" href="/">Logi välja</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
+    </div>
+</nav>
+Siia tuleb kadunud ketta otsing!
+</body>
+</html>
