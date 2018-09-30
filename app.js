@@ -6,7 +6,7 @@ var logger = require('morgan');
 const http = require('http');
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 8081; //aws: 8081;local: 3000
 
 var indexRouter = require('./routes/index');
 var abiRouter = require('./routes/abi');
@@ -24,8 +24,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 module.exports = app;
 
-//aws: 8081;local: 3000
-const server = app.listen(3000, () => {
+
+const server = app.listen(port, () => {
     console.log(`Express is running on port ${server.address().port}`);
 });
 
