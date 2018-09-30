@@ -6,7 +6,7 @@ var logger = require('morgan');
 const http = require('http');
 
 const hostname = '127.0.0.1';
-const port = 8081; //aws: 8081;local: 3000
+const port = 8081; //aws: 8081 ; local: 3000
 
 var indexRouter = require('./routes/index');
 var abiRouter = require('./routes/abi');
