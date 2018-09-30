@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="10d0771a-22a4-4045-8aaa-9574dbcf8b38" name="AWS-Main-Server" url="http://18.197.88.208">
+        <fileTransfer host="18.197.88.208" port="22" privateKey="C:\Users\Tarvo\Google Drive\Discileidja\DL-instance.pem" rootFolder="/home/ec2-user" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
