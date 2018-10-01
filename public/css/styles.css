@@ -1,6 +1,7 @@
 .big-banner{
     background-image: url("../images/taust.jpg");
-    background-size: cover;
+    background-size:100% auto;
+    background-repeat: no-repeat;
     position:fixed;
     padding:0;
     margin:0;
