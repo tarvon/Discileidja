@@ -23,7 +23,7 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
         //check if user exists
-
+        console.log(profile);
 
         var User = {Id: profile.id, FullName: profile.displayName,
         GivenName: profile.givenName, FamilyName: profile.familyName,
