@@ -49,6 +49,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
+
+        var mysql = require('mysql');
+
+        var con = mysql.createConnection({
+            host: "db-discileidja.cvtuddwcibzq.eu-central-1.rds.amazonaws.com",
+            user: "root",
+            password: "kettaleidjaandmebaas",
+            database: "ebdb"
+        });
+
         function onSignIn(googleUser) {
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
@@ -58,11 +68,37 @@
             console.log('Family Name: ' + profile.getFamilyName());
             console.log("Image URL: " + profile.getImageUrl());
             console.log("Email: " + profile.getEmail());
+            con.connect();
+            console.log("Connected!");
+            var sql = "INSERT INTO users (id, eesnimi, perenimi, profiilipilturl, meiliaadress)" +
+                " VALUES ('+profile.getId()+','+profile.getGivenName()+','+profile.getFamilyName()+'," +
+                "'+profile.getImageUrl()+','+profile.getEmail()+' ')";
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted");
+            });
 
             // The ID token you need to pass to your backend:
             var id_token = googleUser.getAuthResponse().id_token;
             console.log("ID Token: " + id_token);
-        };
+        }
+
+
+
+        /*con.connect(function(err) {
+            if (err) throw err;
+            let aaaa= profile.getName();
+            console.log("Connected!");
+            var sql = "INSERT INTO users (id, eesnimi, perenimi, profiilipilturl, meiliaadress)" +
+                " VALUES ('+profile.getId()+, ')";
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted");
+            });
+        });
+        */
+
+
     </script>
 </body>
 </html>
