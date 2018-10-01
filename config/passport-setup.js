@@ -26,7 +26,7 @@ passport.use(new GoogleStrategy({
 
 
         var User = {Id: profile.id, FullName: profile.displayName,
-        GivenName: profile.given_name, FamilyName: profile.family_name,
+        GivenName: profile.givenName, FamilyName: profile.familyName,
         Email: profile.email};
         con.query('INSERT INTO users SET ?', User, (err,res) => {
             if(err) throw err;
