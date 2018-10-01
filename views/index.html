@@ -69,6 +69,7 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
+                }}
 
             let send = {"Id":profile.getId(), "GivenName": profile.getGivenName(), "FamilyName": profile.getFamilyName(),
             "ImageURL": profile.getImageUrl(), "Email": profile.getEmail()};
