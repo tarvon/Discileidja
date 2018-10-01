@@ -11,7 +11,6 @@
     <meta name="google-signin-client_id" content="1020344370651-cpvtmd5bbgvc60uofucd7j3lv65qkdnn.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="/lib/require.js" data-main="app"></script>
 </head>
 <body class="big-banner">
     <header>
@@ -63,13 +62,13 @@
             console.log("Email: " + profile.getEmail());
 
             var xhr = new XMLHttpRequest();
-            var url = "url";
+            var url = "http://discileidja-env-2.wafgteachb.eu-central-1.elasticbeanstalk.com/";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var json = JSON.parse(xhr.responseText);
-                }}
+                }};
 
             let send = {"Id":profile.getId(), "GivenName": profile.getGivenName(), "FamilyName": profile.getFamilyName(),
             "ImageURL": profile.getImageUrl(), "Email": profile.getEmail()};
