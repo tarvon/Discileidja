@@ -22,6 +22,9 @@ passport.use(new GoogleStrategy({
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
+        //check if user exists
+
+
         var User = {Id: profile.id, FullName: profile.displayName,
         GivenName: profile.given_name, FamilyName: profile.family_name,
         Email: profile.email};
