@@ -11,6 +11,20 @@ const keys = require('./config/keys');
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
 
+//database connection
+var con = mysql.createConnection({
+    host: keys.AWSRDS.host,
+    user: keys.AWSRDS.username,
+    password: keys.AWSRDS.password,
+    database: "ebdb"
+});
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
 var indexRouter = require('./routes/index');
