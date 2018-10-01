@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const mysql = require('mysql');
-
+const con = require('../app.js')
 
 passport.use(new GoogleStrategy({
         clientID: keys.google.clientID,
