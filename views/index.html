@@ -58,7 +58,6 @@
             console.log('Family Name: ' + profile.getFamilyName());
             console.log("Image URL: " + profile.getImageUrl());
             console.log("Email: " + profile.getEmail());
-            con.connect();
 
             let send = {"Id":profile.getId(), "GivenName": profile.getGivenName(), "FamilyName": profile.getFamilyName(),
             "ImageURL": profile.getImageUrl(), "Email": profile.getEmail()};
