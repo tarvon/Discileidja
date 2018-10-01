@@ -9,7 +9,7 @@ const mysql = require('mysql');
 const keys = require('./config/keys');
 
 const hostname = '127.0.0.1';
-const port = 8080; //aws: 8081 ; local: 3000
+const port = 8081; //aws: 8081 ; local: 3000
 
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
