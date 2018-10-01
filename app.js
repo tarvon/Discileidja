@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
-const bodyParser = require("body-parser");
-
+const passportSetup = require('./config/passport-setup');
 
 const hostname = '127.0.0.1';
-const port = 8081; //aws: 8081 ; local: 3000
+const port = 3000; //aws: 8081 ; local: 3000
 
+var authRouter = require('./routes/auth-routes');
+var homeRouter = require('./routes/home');
 var indexRouter = require('./routes/index');
 var abiRouter = require('./routes/abi');
 var leidsinRouter = require('./routes/leidsin');
@@ -17,27 +18,17 @@ var otsinRouter = require('./routes/otsin');
 var profiilRouter = require('./routes/profiil');
 
 var app = express();
-app.use('/', indexRouter);
+app.use('/auth', authRouter);
+app.use('/', homeRouter);
+app.use('/index', indexRouter);
 app.use('/abi', abiRouter);
 app.use('/leidsin', leidsinRouter);
 app.use('/otsin', otsinRouter);
 app.use('/profiil', profiilRouter);
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.use(bodyParser.json());
-
-app.post("/", function (req, res) {
-    console.log(req.body.user.Id)
-});
 
 module.exports = app;
-
-
-
 
 
 const server = app.listen(port, () => {
