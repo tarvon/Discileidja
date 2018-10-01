@@ -19,7 +19,9 @@
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "popper.js": "^1.14.4",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "requirejs": "^2.3.6",
+    "body-parser": "latest"
   },
   "devDependencies": {
     "browser-sync": "^2.24.7",

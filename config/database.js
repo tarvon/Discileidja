@@ -17,14 +17,7 @@ function onSignIn(googleUser) {
     console.log("Image URL: " + profile.getImageUrl());
     console.log("Email: " + profile.getEmail());
     con.connect();
-    console.log("Connected!");
-    var sql = "INSERT INTO users (id, eesnimi, perenimi, profiilipilturl, meiliaadress)" +
-        " VALUES ('+profile.getId()+','+profile.getGivenName()+','+profile.getFamilyName()+'," +
-        "'+profile.getImageUrl()+','+profile.getEmail()+' ')";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted");
-    });
+
 
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;

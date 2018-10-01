@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
+var bodyParser=require("body-parser");
 
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
@@ -22,8 +23,19 @@ app.use('/otsin', otsinRouter);
 app.use('/profiil', profiilRouter);
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+app.post('/createEmp', function(req, res){
+//now req.body will be populated with the object you sent
+    console.log(req.body.Id);
+    console.log("xd");
+});
+
 
 module.exports = app;
+
+
 
 
 const server = app.listen(port, () => {
