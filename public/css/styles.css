@@ -45,3 +45,12 @@
     text-align: center;
     border-right: 1px solid rgba(0,0,0,0.2);
 }
+
+form {
+    margin: 0 auto;
+    width:80%;
+}
+
+.text-holder-center {
+    text-align: center;
+}

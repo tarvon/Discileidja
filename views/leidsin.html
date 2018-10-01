@@ -13,85 +13,89 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="page-header nav header-main"><a href="/" style="text-decoration:none; color:white">Discileidja</a></h1>
-    </header>
-    <nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!--style="display: flex; justify-content: center; flex-wrap: wrap"-->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
-                    <p class="nav-link active">Leidsin</p>
-                </li>
-                <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
-                    <a class="nav-link" href="/otsin">Otsin</a>
-                </li>
-                <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
-                    <a class="nav-link" href="/abi">Abi</a>
-                </li>
-                <li class="nav-item dropdown"  style="padding-left: 2em; padding-right: 2em;">
-                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Profiil
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/profiil">Seaded</a>
-                        <a class="dropdown-item" href="/">Logi välja</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    </nav>
-
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label>Rada</label>
-                <select class="form-control">
-                    <option value="rada1">Rada 1</option>
-                    <option value="rada2">Rada 2</option>
-                    <option value="muu">muu</option>
-                </select>
-                <!--
-                <input type="text" id="rada" name="rada" class="form-control" placeholder="test">
-                -->
-            </div>
-            <div class="form-group">
-                <label for="nimi">Nimi</label>
-                <input type="text" id="nimi" name="nimi" class="form-control" placeholder="Lisa discil olev nimi">
-            </div>
-            <div class="form-group">
-                <label for="number">Number</label>
-                <input type="text" id="number" name="number" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="värvus">Värvus</label>
-                <input type="text" id="värvus" name="värvus" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="tootja">Tootja</label>
-                <input type="text" id="tootja" name="tootja" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="mudel">Mudel</label>
-                <input type="text" id="mudel" name="mudel" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="lisainfo">Lisainfo</label>
-                <textarea name="lisainfo" id="lisainfo" cols="30" rows="10" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="pilt">Pilt</label>
-                <input type="file" id="pilt" name="pilt" accept="image"  class="form-control-file">
-            </div>
-            <button type="submit" class="btn btn-toolbar mb-5">Lisa ketas</button>
-        </form>
+<header>
+    <h1 class="page-header nav header-main"><a href="/" style="text-decoration:none; color:white">Discileidja</a></h1>
+</header>
+<nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--style="display: flex; justify-content: center; flex-wrap: wrap"-->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <p class="nav-link active">Leidsin</p>
+            </li>
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/otsin">Otsin</a>
+            </li>
+            <li class="nav-item" style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link" href="/abi">Abi</a>
+            </li>
+            <li class="nav-item dropdown"  style="padding-left: 2em; padding-right: 2em;">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profiil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/profiil">Seaded</a>
+                    <a class="dropdown-item" href="/">Logi välja</a>
+                </div>
+            </li>
+        </ul>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+</nav>
+
+<div class="container">
+    <p></p>
+    <p class="text-holder-center">Kui oled leidnud võõra ketta, siis siia saad sisestada leitud ketta andmed.<br>
+        Kõige tähtsam on lisada rada, kust ketas leiti, kuid võimalusel lisa palun kogu info.</p>
+    <hr>
+    <form>
+        <div class="form-group">
+            <label>Rada</label>
+            <select class="form-control" required>
+                <option value="rada1">Vooremäe</option>
+                <option value="rada2">Tartu Dendropark</option>
+                <option value="muu">muu</option>
+            </select>
+            <!--
+            <input type="text" id="rada" name="rada" class="form-control" placeholder="test">
+            -->
+        </div>
+        <div class="form-group">
+            <label for="nimi">Nimi</label>
+            <input type="text" id="nimi" name="nimi" class="form-control" placeholder="Lisa discil olev nimi">
+        </div>
+        <div class="form-group">
+            <label for="number">Number</label>
+            <input type="text" id="number" name="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="värvus">Värvus</label>
+            <input type="text" id="värvus" name="värvus" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="tootja">Tootja</label>
+            <input type="text" id="tootja" name="tootja" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="mudel">Mudel</label>
+            <input type="text" id="mudel" name="mudel" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="lisainfo">Lisainfo</label>
+            <textarea name="lisainfo" id="lisainfo" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="pilt">Pilt</label>
+            <input type="file" id="pilt" name="pilt" accept="image"  class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-toolbar mb-5">Lisa ketas</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
