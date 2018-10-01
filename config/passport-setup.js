@@ -2,7 +2,23 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const mysql = require('mysql');
-const con = require('../app.js')
+
+//database connection
+var con = mysql.createConnection({
+    host: keys.AWSRDS.host,
+    user: keys.AWSRDS.username,
+    password: keys.AWSRDS.password,
+    database: "ebdb"
+});
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+passport.serializeUser((user, done)=>{
+    done(null, user.id);
+});
 
 passport.use(new GoogleStrategy({
         clientID: keys.google.clientID,
@@ -22,3 +38,7 @@ passport.use(new GoogleStrategy({
         })
     }
 ));
+
+con.end(function(err) {
+    // Function to close database connection
+});
