@@ -38,9 +38,9 @@ passport.use(new GoogleStrategy({
             if(err) throw err;
 
         });
-        /*console.log('Last inserted ID:', res.insertId);
+        console.log('Last inserted ID:', res.insertId);
         User.findOrCreate({ googleId: profile.id }, function (err, user) {
             return done(err, user);
-        });*/
+        });
     }
 ));
