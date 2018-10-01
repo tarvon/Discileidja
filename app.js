@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
 const passportSetup = require('./config/passport-setup');
+const mysql = require('mysql');
+const keys = require('./config/keys');
 
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
