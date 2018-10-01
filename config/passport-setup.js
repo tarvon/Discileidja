@@ -33,12 +33,14 @@ passport.use(new GoogleStrategy({
             console.log("Connected!");
         });
 
-        var User = {Id: profile.id, FullName: profile.displayName, GivenName: profile.givenName, FamilyName: profile.familyName, Email: profile.email};
-        con.query('INSERT INTO users SET ?', User, (err,res) => {
+        var user = {Id: profile.id, FullName: profile.displayName, GivenName: profile.givenName, FamilyName: profile.familyName, Email: profile.email};
+        con.query('INSERT INTO users SET ?', user, (err,res) => {
             if(err) throw err;
 
-            console.log('Last inserted ID:', res.insertId);
-
-        })
+        });
+        /*console.log('Last inserted ID:', res.insertId);
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+            return done(err, user);
+        });*/
     }
 ));
