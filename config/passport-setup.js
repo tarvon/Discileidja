@@ -22,13 +22,13 @@ passport.use(new GoogleStrategy({
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
-        var User = {Id: profile.getId(), FullName: profile.getName(),
-        GivenName: profile.getGivenName(), FamilyName: profile.getFamilyName(),
-        Email: profile.getEmail()};
-        con.query('INSERT INTO users SET ?', user, (err,res) => {
+        var User = {Id: profile.id, FullName: profile.displayName,
+        GivenName: profile.given_name, FamilyName: profile.family_name,
+        Email: profile.email};
+        con.query('INSERT INTO users SET ?', User, (err,res) => {
             if(err) throw err;
 
-            console.log('Last inserted ID:', res.inertId);
+            console.log('Last inserted ID:', res.insertId);
 
         })
     }
