@@ -11,9 +11,6 @@ const keys = require('./config/keys');
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
 
-
-
-
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
 var indexRouter = require('./routes/index');
@@ -32,7 +29,6 @@ app.use('/otsin', otsinRouter);
 app.use('/profiil', profiilRouter);
 app.use(express.static(path.join(__dirname, '/public')));
 
-module.exports = con;
 module.exports = app;
 
 
