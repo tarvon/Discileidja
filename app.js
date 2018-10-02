@@ -7,6 +7,7 @@ const http = require('http');
 const passportSetup = require('./config/passport-setup');
 const mysql = require('mysql');
 const keys = require('./config/keys');
+const bodyParser = require('body-parser');
 
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
@@ -40,7 +41,45 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+//post method ja andmebaasi lisamine
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+app.post('/leidsin', function (req, res) {
+    //lisada piltidega tegelemine
+    var con = mysql.createConnection({
+        host: "db-discileidja.cvtuddwcibzq.eu-central-1.rds.amazonaws.com",
+        user: "root",
+        password: "kettaleidjaandmebaas",
+        database: "ebdb"
+    });
+
+    con.connect(function(err) {
+        if (err) {
+            throw err;
+        }
+        console.log("Ühendatud andmebaasiga");
+
+        //lisada kontrollid
+        var query1 = req.body.asukoht.toString();
+        var query2 = req.body.nimi.toString();
+        var query3 = req.body.number;
+        var query4 = req.body.värvus.toString();
+        var query5 = req.body.tootja.toString();
+        var query6 = req.body.mudel.toString();
+        var query7 = req.body.lisainfo.toString();
+        var sql = "INSERT INTO kadunudKettad(rada, nimi, discinumber, värvus, tootja, mudel, lisainfo, pilt) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"','"+query6+"','"+query7+"','pilt')";
+
+        con.query(sql, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            console.log("Lisatud andmebaasi!");
+        });
+    });
+    res.send('Töötab');
+    res.end();
+});
 
 
 /*

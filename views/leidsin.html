@@ -45,16 +45,21 @@
     </div>
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 </nav>
-
 <div class="container">
     <p></p>
     <p class="text-holder-center">Kui oled leidnud võõra ketta, siis siia saad sisestada leitud ketta andmed.<br>
         Kõige tähtsam on lisada rada, kust ketas leiti, kuid võimalusel lisa palun kogu info.</p>
     <hr>
-    <form>
+    <div class="alert alert-success lisatud" role="alert" style="display: none">
+        Lisatud!
+    </div>
+    <div class="alert alert-danger viga" role="alert" style="display: none">
+        Viga!
+    </div>
+    <form method="post">
         <div class="form-group">
             <label>Rada</label>
-            <select class="form-control" required>
+            <select id="asukoht" name="asukoht" class="form-control" required>
                 <option value="rada1">Vooremäe</option>
                 <option value="rada2">Tartu Dendropark</option>
                 <option value="muu">muu</option>
