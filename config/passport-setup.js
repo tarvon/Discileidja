@@ -32,7 +32,7 @@ passport.deserializeUser(function(id, done){
         if (err) {
             return console.error('error: ' + err.message);
         }
-        console.log('Connected to the MySQL server.');
+        console.log('Connected to the MySQL server=1');
 
         //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
         connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
@@ -59,7 +59,7 @@ passport.use(new GoogleStrategy({
             if (err) {
                 return console.error('error: ' + err.message);
             }
-            console.log('Connected to the MySQL server.');
+            console.log('Connected to the MySQL server=2');
 
             let query1 = profile.id;
             let query2 = profile.displayName;
@@ -81,7 +81,7 @@ passport.use(new GoogleStrategy({
                 if (currentUser.length > 0){
                     console.log("User is: ", currentUser);
                     done(null, currentUser);
-                    connection.end();
+                    connection2.end();
                 } else {
 
                     //create new user
@@ -99,7 +99,7 @@ passport.use(new GoogleStrategy({
                             }
                             console.log('Created user',  CreatedUser);
                             done(null, CreatedUser);
-                            connection.end();
+                            connection2.end();
                         });
 
                     });
