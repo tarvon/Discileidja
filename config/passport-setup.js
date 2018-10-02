@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const mysql = require('mysql');
-let ConnectDB = require('./connectDB.js');
+let ConnectDB = require('./ConnectDB.js');
 let connection = mysql.createConnection(ConnectDB);
 
 passport.serializeUser((user, done)=>{
