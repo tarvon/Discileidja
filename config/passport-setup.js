@@ -10,13 +10,14 @@ let connection = mysql.createConnection({
     database: "ebdb"
 });
 
-/*connection.connect(function(err) {
-    if (err) {
-        throw err;
-    }
-    console.log("Ühendatud andmebaasiga");
+let connection2 = mysql.createConnection({
+    host: keys.AWSRDS.host,
+    user: keys.AWSRDS.username,
+    password: keys.AWSRDS.password,
+    database: "ebdb"
+});
 
-});*/
+
 
 passport.serializeUser(function(user, done){
 
@@ -27,6 +28,12 @@ passport.serializeUser(function(user, done){
 
 passport.deserializeUser(function(id, done){
 
+    connection.connect(function(err) {
+        if (err) {
+            return console.error('error: ' + err.message);
+        }
+        console.log('Connected to the MySQL server.');
+
         //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
         connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
             if (err) {
@@ -36,7 +43,9 @@ passport.deserializeUser(function(id, done){
             console.log(FoundUser);
             let UserID = FoundUser[0].id;
             done(null, UserID);
+            connection.end();
         });
+    });
 });
 
 passport.use(new GoogleStrategy({
@@ -46,11 +55,11 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
 
-        /*connection.connect(function(err) {
+        connection2.connect(function(err) {
             if (err) {
                 return console.error('error: ' + err.message);
             }
-            console.log('Connected to the MySQL server.');*/
+            console.log('Connected to the MySQL server.');
 
             let query1 = profile.id;
             let query2 = profile.displayName;
@@ -65,7 +74,7 @@ passport.use(new GoogleStrategy({
 
 
             //check if user exists
-            connection.query(sqlCurrentUser, profile.id, (error, currentUser, fields) => {
+            connection2.query(sqlCurrentUser, profile.id, (error, currentUser, fields) => {
                 if (error) {
                     return console.error(error.message);
                 }
@@ -76,7 +85,7 @@ passport.use(new GoogleStrategy({
                 } else {
 
                     //create new user
-                    connection.query(sqlNewUser, (err, newUser) =>  {
+                    connection2.query(sqlNewUser, (err, newUser) =>  {
                         if (err) {
                             return console.error(err.message);
                         }
@@ -84,7 +93,7 @@ passport.use(new GoogleStrategy({
                         let CreatedUserDbId = newUser.insertId;
 
                         //find created user
-                        connection.query(sqlCreatedUser, CreatedUserDbId,  (err, CreatedUser, fields) =>  {
+                        connection2.query(sqlCreatedUser, CreatedUserDbId,  (err, CreatedUser, fields) =>  {
                             if (err) {
                                 return console.error(err.message);
                             }
@@ -96,6 +105,6 @@ passport.use(new GoogleStrategy({
                     });
                 }
             });
-        //});
+        });
     }
 ));
