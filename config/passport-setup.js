@@ -2,14 +2,12 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const mysql = require('mysql');
-
-
+let ConnectDB = require('./connectDB.js');
+let connection = mysql.createConnection(ConnectDB);
 
 passport.serializeUser((user, done)=>{
     done(null, user.id);
 });
-
-
 
 passport.use(new GoogleStrategy({
         clientID: keys.google.clientID,
@@ -20,27 +18,16 @@ passport.use(new GoogleStrategy({
         //check if user exists
         console.log(profile);
 
-        //database connection
-        var con = mysql.createConnection({
-            host: keys.AWSRDS.host,
-            user: keys.AWSRDS.username,
-            password: keys.AWSRDS.password,
-            database: "ebdb"
+        let userSQL = 'INSERT INTO users(Id,FullName,GivenName,FamilyName,Email) VALUES(?,?,?,?,?)';
+        let todo = [profile.id, profile.displayName, profile.givenName, profile.familyName, profile.email];
+
+        connection.query(userSQL, todo, (err, results, fields) =>  {
+            if (err) {
+                return console.error(err.message);
+            }
+            console.log('Todo ID:' + results.insertId);
         });
 
-        con.connect(function(err) {
-            if (err) throw err;
-            console.log("Connected!");
-        });
-
-        var user = {Id: profile.id, FullName: profile.displayName, GivenName: profile.givenName, FamilyName: profile.familyName, Email: profile.email};
-        con.query('INSERT INTO users SET ?', user, (err,res) => {
-            if(err) throw err;
-            console.log('Last inserted ID:', res.insertId);
-        });
-
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
-            return done(err, user);
-        });
+        connection.end();
     }
 ));
