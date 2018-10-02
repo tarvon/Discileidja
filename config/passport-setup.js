@@ -18,10 +18,15 @@ passport.use(new GoogleStrategy({
         //check if user exists
         console.log(profile);
 
-        let userSQL = 'INSERT INTO users(Id,FullName,GivenName,FamilyName,Email) VALUES(?,?,?,?,?)';
-        let todo = [profile.id, profile.displayName, profile.givenName, profile.familyName, profile.email];
+        let query1 = profile.id;
+        let query2 = profile.displayName;
+        let query3 = profile.givenName;
+        let query4 = profile.familyName;
+        let query5 = profile.email;
 
-        connection.query(userSQL, todo, (err, results, fields) =>  {
+        let sql = "INSERT INTO users(Id,FullName,GivenName,FamilyName,Email) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"')";
+
+        connection.query(sql, (err, results) =>  {
             if (err) {
                 return console.error(err.message);
             }
