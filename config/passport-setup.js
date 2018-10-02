@@ -10,21 +10,33 @@ let connection = mysql.createConnection({
     database: "ebdb"
 });
 
-connection.connect(function(err) {
+/*connection.connect(function(err) {
     if (err) {
         throw err;
     }
     console.log("Ühendatud andmebaasiga");
 
+});*/
+
+passport.serializeUser(function(user, done){
+
+    console.log(user[0].id);
+    done(null, user[0].id);
+
 });
 
-passport.serializeUser((user, done)=>{
-    done(null, user.id);
-});
+passport.deserializeUser(function(id, done){
 
-passport.deserializeUser((id, done)=>{
-    User.findById
-    done(null, user.id);
+        //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
+        connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
+            if (err) {
+                console.log("kurwa");
+                return console.error(err.message);
+            }
+            console.log(FoundUser);
+            let UserID = FoundUser[0].id;
+            done(null, UserID);
+        });
 });
 
 passport.use(new GoogleStrategy({
@@ -34,11 +46,11 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
 
-        connection.connect(function(err) {
+        /*connection.connect(function(err) {
             if (err) {
                 return console.error('error: ' + err.message);
             }
-            console.log('Connected to the MySQL server.');
+            console.log('Connected to the MySQL server.');*/
 
             let query1 = profile.id;
             let query2 = profile.displayName;
@@ -58,8 +70,9 @@ passport.use(new GoogleStrategy({
                     return console.error(error.message);
                 }
                 if (currentUser.length > 0){
-                    console.log("User is: ", currentUser)
+                    console.log("User is: ", currentUser);
                     done(null, currentUser);
+                    connection.end();
                 } else {
 
                     //create new user
@@ -77,11 +90,12 @@ passport.use(new GoogleStrategy({
                             }
                             console.log('Created user',  CreatedUser);
                             done(null, CreatedUser);
+                            connection.end();
                         });
 
                     });
                 }
             });
-        });
+        //});
     }
 ));

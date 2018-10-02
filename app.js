@@ -12,7 +12,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 
 const hostname = '127.0.0.1';
-const port = 8081; //aws: 8081 ; local: 3000
+const port = 3000; //aws: 8081 ; local: 3000
 
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
@@ -53,6 +53,7 @@ const server = app.listen(port, () => {
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
+
 
 
 //post method ja andmebaasi lisamine
