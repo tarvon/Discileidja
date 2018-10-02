@@ -43,7 +43,6 @@ passport.deserializeUser(function(id, done){
             console.log(FoundUser);
             let UserID = FoundUser[0].id;
             done(null, UserID);
-            connection.end();
         });
     });
 });
@@ -81,7 +80,6 @@ passport.use(new GoogleStrategy({
                 if (currentUser.length > 0){
                     console.log("User is: ", currentUser);
                     done(null, currentUser);
-                    connection2.end();
                 } else {
 
                     //create new user
@@ -99,7 +97,6 @@ passport.use(new GoogleStrategy({
                             }
                             console.log('Created user',  CreatedUser);
                             done(null, CreatedUser);
-                            connection2.end();
                         });
 
                     });
