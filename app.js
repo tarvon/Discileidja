@@ -52,9 +52,7 @@ app.post('/leidsin', function (req, res) {
         host: "db-discileidja.cvtuddwcibzq.eu-central-1.rds.amazonaws.com",
         user: "root",
         password: "kettaleidjaandmebaas",
-        database: "ebdb",
-        insecureAuth: true,
-        port: 3306
+        database: "ebdb"
     });
 
     con.connect(function(err) {
