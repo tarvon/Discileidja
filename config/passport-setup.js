@@ -20,11 +20,11 @@ passport.use(new GoogleStrategy({
 
         let query1 = profile.id;
         let query2 = profile.displayName;
-        let query3 = profile.givenName;
-        let query4 = profile.familyName;
-        let query5 = profile.email;
+        let query3 = profile.name.givenName;
+        let query4 = profile.name.familyName;
+        let query5 = profile.emails[0].value;
 
-        let sql = "INSERT INTO users(Id,FullName,GivenName,FamilyName,Email) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"')";
+        let sql = "INSERT INTO users(GoogleID,FullName,GivenName,FamilyName,Email) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"')";
 
         connection.query(sql, (err, results) =>  {
             if (err) {
