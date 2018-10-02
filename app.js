@@ -8,6 +8,8 @@ const passportSetup = require('./config/passport-setup');
 const mysql = require('mysql');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 const hostname = '127.0.0.1';
 const port = 8081; //aws: 8081 ; local: 3000
@@ -21,6 +23,17 @@ var otsinRouter = require('./routes/otsin');
 var profiilRouter = require('./routes/profiil');
 
 var app = express();
+
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+
+}));
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/auth', authRouter);
 app.use('/', homeRouter);
 app.use('/index', indexRouter);

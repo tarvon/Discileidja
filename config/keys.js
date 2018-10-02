@@ -9,5 +9,8 @@ module.exports = {
         host: 'db-discileidja.cvtuddwcibzq.eu-central-1.rds.amazonaws.com',
         username: 'root',
         password: 'kettaleidjaandmebaas'
+    },
+    session: {
+        cookieKey: 'kurwa'
     }
 };

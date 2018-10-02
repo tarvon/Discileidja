@@ -3,7 +3,20 @@ const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const mysql = require('mysql');
 
+let connection = mysql.createConnection({
+    host: keys.AWSRDS.host,
+    user: keys.AWSRDS.username,
+    password: keys.AWSRDS.password,
+    database: "ebdb"
+});
 
+connection.connect(function(err) {
+    if (err) {
+        throw err;
+    }
+    console.log("Ühendatud andmebaasiga");
+
+});
 
 passport.serializeUser((user, done)=>{
     done(null, user.id);
@@ -20,13 +33,6 @@ passport.use(new GoogleStrategy({
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
-
-        let connection = mysql.createConnection({
-            host: keys.AWSRDS.host,
-            user: keys.AWSRDS.username,
-            password: keys.AWSRDS.password,
-            database: "ebdb"
-        });
 
         connection.connect(function(err) {
             if (err) {
