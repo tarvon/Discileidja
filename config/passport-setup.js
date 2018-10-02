@@ -24,6 +24,7 @@ passport.use(new GoogleStrategy({
         let query5 = profile.emails[0].value;
 
         let sql = "INSERT INTO users(GoogleID,FullName,GivenName,FamilyName,Email) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"')";
+        console.log("kurwa");
 
         connection.query(sql, (err, results) =>  {
             if (err) {
