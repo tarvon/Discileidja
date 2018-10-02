@@ -16,7 +16,6 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
         //check if user exists
-        console.log(profile);
 
         let query1 = profile.id;
         let query2 = profile.displayName;
@@ -33,6 +32,6 @@ passport.use(new GoogleStrategy({
             console.log('Todo ID:' + results.insertId);
         });
 
-        connection.end();
+        //connection.release();
     }
 ));

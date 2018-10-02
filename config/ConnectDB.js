@@ -6,7 +6,9 @@ let connection = mysql.createConnection({
     host: keys.AWSRDS.host,
     user: keys.AWSRDS.username,
     password: keys.AWSRDS.password,
-    database: "ebdb"
+    database: "ebdb",
+    insecureAuth: true,
+    port: 3306
 });
 
 connection.connect(function(err) {
