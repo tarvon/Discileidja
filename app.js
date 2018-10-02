@@ -41,6 +41,7 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+/*
 //post method ja andmebaasi lisamine
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -80,6 +81,7 @@ app.post('/leidsin', function (req, res) {
     res.send('Töötab');
     res.end();
 });
+*/
 
 
 /*
