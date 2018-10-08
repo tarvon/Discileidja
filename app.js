@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
 const passportSetup = require('./config/passport-setup');
-const mysql = require('mysql');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
@@ -56,42 +55,9 @@ server.listen(port, hostname, () => {
 
 
 
-//post method ja andmebaasi lisamine
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.post('/leidsin', function (req, res) {
-    //lisada piltidega tegelemine
-    var con = mysql.createConnection({
-        host: "db-discileidja.cvtuddwcibzq.eu-central-1.rds.amazonaws.com",
-        user: "root",
-        password: "kettaleidjaandmebaas",
-        database: "ebdb"
-    });
-
-    con.connect(function(err) {
-        if (err) {
-            throw err;
-        }
-        console.log("Ühendatud andmebaasiga");
-
-        //lisada kontrollid
-        var query1 = req.body.asukoht.toString();
-        var query2 = req.body.nimi.toString();
-        var query3 = req.body.number;
-        var query4 = req.body.värvus.toString();
-        var query5 = req.body.tootja.toString();
-        var query6 = req.body.mudel.toString();
-        var query7 = req.body.lisainfo.toString();
-        var sql = "INSERT INTO kadunudKettad(rada, nimi, discinumber, värvus, tootja, mudel, lisainfo, pilt) VALUES ('"+query1+"','"+query2+"','"+query3+"','"+query4+"','"+query5+"','"+query6+"','"+query7+"','pilt')";
-
-        con.query(sql, function (err, result) {
-            if (err) {
-                throw err;
-            }
-            console.log("Lisatud andmebaasi!");
-        });
-    });
+/* post method on leidsin.html */
+app.post('/leidsin', (req, res) => {
+    leidsinRouter.addDB(req, res);
     res.send('Töötab');
     res.end();
 });
