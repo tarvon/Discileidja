@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
 const passportSetup = require('./config/passport-setup');
-const keys = require('./config/keys');
+//const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -28,7 +28,7 @@ var app = express();
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
+    keys: 'kurwa'
 
 }));
 
