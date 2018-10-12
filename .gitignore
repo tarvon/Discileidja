@@ -1,7 +1,5 @@
 # Created by https://www.gitignore.io/api/node
 
-# DB
-config/keys.js
 
 # idea
 .idea/
