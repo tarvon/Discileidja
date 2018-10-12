@@ -41,8 +41,8 @@ passport.deserializeUser(function(id, done){
 });
 
 passport.use(new GoogleStrategy({
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret,
+        clientID: '1020344370651-cpvtmd5bbgvc60uofucd7j3lv65qkdnn.apps.googleusercontent.com',
+        clientSecret: 'MDCJlsZgUTJZLtCY29YYFq1x',
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
