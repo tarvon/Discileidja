@@ -5,9 +5,9 @@ const mysql = require('mysql');
 
 let pool        = mysql.createPool({
     connectionLimit : 10, // default = 10
-    host: keys.AWSRDS.host,
-    user: keys.AWSRDS.username,
-    password: keys.AWSRDS.password,
+    host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+    user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+    password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
     database: "ebdb"
 });
 
