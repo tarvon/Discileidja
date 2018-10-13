@@ -1,13 +1,13 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-const keys = require('./keys');
+//const keys = require('./keys');
 const mysql = require('mysql');
 
 let pool        = mysql.createPool({
     connectionLimit : 10, // default = 10
-    host: keys.AWSRDS.host,
-    user: keys.AWSRDS.username,
-    password: keys.AWSRDS.password,
+    host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+    user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+    password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
     database: "ebdb"
 });
 
@@ -41,8 +41,8 @@ passport.deserializeUser(function(id, done){
 });
 
 passport.use(new GoogleStrategy({
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret,
+        clientID: process.env.GoogleClientID,
+        clientSecret: process.env.GoogleClientSecret,
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {

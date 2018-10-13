@@ -12,7 +12,7 @@ const passport = require('passport');
 const multer = require('multer');
 
 const hostname = '127.0.0.1';
-const port = 3000; //aws: 8081 ; local: 3000
+const port = 8081; //aws: 8081 ; local: 3000
 
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
@@ -28,7 +28,7 @@ var app = express();
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ['kurwa']
+    keys: [process.env.CookieSessionKey]
 
 }));
 
