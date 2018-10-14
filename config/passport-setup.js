@@ -1,15 +1,45 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-const keys = require('./keys');
 const mysql = require('mysql');
+const nodemailer = require('nodemailer');
+
+let keys = "";
+
+if (process.env.NODE_ENV !== 'production'){
+    keys = require('./keys');
+
+}
 
 let pool        = mysql.createPool({
     connectionLimit : 10, // default = 10
-    host: keys.AWSRDS.host,
-    user: keys.AWSRDS.username,
-    password: keys.AWSRDS.password,
+    host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+    user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+    password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
     database: "ebdb"
 });
+
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    service: 'mail.ee',
+    auth: {
+        user: process.env.MAIL_USERNAME || keys.MAIL.username,
+        pass: process.env.MAIL_PASSWORD || keys.MAIL.password
+    },
+    tls: {
+        rejectUnauthorized:false
+    }
+});
+
+// setup email data with unicode symbols
+let mailOptions = {
+    from: '"Discileidja" <discileidja@mail.ee>', // sender address
+    to: 'bar@example.com', // list of receivers
+    subject: 'Registreerimine õnnestus', // Subject line
+    text: 'Oled registreerunud Discileidja kasutajaks', // plain text body
+};
+
+
 
 passport.serializeUser(function(user, done){
 
@@ -29,10 +59,8 @@ passport.deserializeUser(function(id, done){
         //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
         connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
             if (err) {
-                console.log("kurwa");
                 return console.error(err.message);
             }
-            console.log(FoundUser);
             let UserID = FoundUser[0].id;
             done(null, UserID);
             connection.release();
@@ -41,8 +69,8 @@ passport.deserializeUser(function(id, done){
 });
 
 passport.use(new GoogleStrategy({
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret,
+        clientID: process.env.GoogleClientID || keys.google.clientID,
+        clientSecret: process.env.GoogleClientSecret || keys.google.clientSecret,
         callbackURL: "/auth/google/redirect"
     },
     function(accessToken, refreshToken, profile, done) {
@@ -83,12 +111,24 @@ passport.use(new GoogleStrategy({
                         console.log('New user ID:' + newUser.insertId);
                         let CreatedUserDbId = newUser.insertId;
 
+
+
                         //find created user
                         connection.query(sqlCreatedUser, CreatedUserDbId,  (err, CreatedUser, fields) =>  {
                             if (err) {
                                 return console.error(err.message);
                             }
                             console.log('Created user',  CreatedUser);
+
+                            //nodemailer upon registration
+                            mailOptions.to = CreatedUser[0].Email;
+                            transporter.sendMail(mailOptions, (error, info) => {
+                                if (error) {
+                                    return console.log(error);
+                                }
+                                console.log('Message sent: %s', info.messageId);
+                            });
+
                             done(null, CreatedUser);
                             connection.release();
                         });
