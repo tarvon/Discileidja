@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-//const keys = require('./keys');
+const keys = process.env.Keys || require('./keys');
 const mysql = require('mysql');
 
 let pool        = mysql.createPool({

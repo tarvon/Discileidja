@@ -5,14 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
 const passportSetup = require('./config/passport-setup');
-//const keys = require('./config/keys');
+const keys = process.env.Keys || require('./config/keys');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const multer = require('multer');
 
+console.log(require.resolve('./config/keys'));
+
 const hostname = '127.0.0.1';
-const port = 8081; //aws: 8081 ; local: 3000
+const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
 
 var authRouter = require('./routes/auth-routes');
 var homeRouter = require('./routes/home');
