@@ -56,23 +56,8 @@
         Kui oled oma ketta ära kaotanud, siis mine meie <a href="/otsin">Otsin ketast</a> lehele ning proovi sealse otsingu abiga oma ketas üles leida. Kui leiad õige ketta, siis anname sulle ketta leidja kontaktid, et saaksite omavahel kokku leppida, kuidas ketas üle anda.
     </p>
 </div>
-<div class="container" id="googleMap" style="width:100%;height:400px;"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script>
-    function myMap() {
-        var vooremäe = {lat: 58.284462, lng: 26.891569};
-        var mapProp= {
-
-        center:new google.maps.LatLng(vooremäe),
-            zoom:12,
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        var vooremäeMarker = new google.maps.Marker({position: vooremäe, map: map});
-
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Hhc6tzYIKAG--AJEK2HfhLbJvlFYGcE&callback=myMap"></script>
 </body>
 </html>
