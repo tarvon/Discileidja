@@ -82,23 +82,6 @@
         Kui oled oma ketta ära kaotanud, siis mine meie <a href="/otsin">Otsin ketast</a> lehele ning proovi sealse otsingu abiga oma ketas üles leida. Kui leiad õige ketta, siis anname sulle ketta leidja kontaktid, et saaksite omavahel kokku leppida, kuidas ketas üle anda.
     </p>
 </div>
-<div class="container" id="googleMap" style="width:100%;height:400px;"></div>
 <script>    $.fn.modal || document.write('<script src="/js/bootstrap.min.js">\x3C/script>')</script>
-<script>
-    function myMap() {
-        var vooremäe = {lat: 58.284462, lng: 26.891569};
-        var mapProp= {
-
-        center:new google.maps.LatLng(vooremäe),
-            zoom:12,
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        var vooremäeMarker = new google.maps.Marker({position: vooremäe, map: map});
-
-    }
-
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Hhc6tzYIKAG--AJEK2HfhLbJvlFYGcE&callback=myMap"></script>
 </body>
 </html>
