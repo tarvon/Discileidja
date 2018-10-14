@@ -1,7 +1,13 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-const keys = process.env.Keys || require('./keys');
 const mysql = require('mysql');
+
+let keys = "";
+
+if (process.env.NODE_ENV !== 'production'){
+    keys = require('./keys');
+
+}
 
 let pool        = mysql.createPool({
     connectionLimit : 10, // default = 10
