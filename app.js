@@ -26,26 +26,27 @@ var leidsin = require('./lib/leidsin');
 
 var app = express();
 
+let keys = "";
+
 if (process.env.NODE_ENV !== 'production'){
-    const keys = require('./config/keys');
-
-    let options = {
-        host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
-        user: process.env.RDS_USERNAME || keys.AWSRDS.username,
-        password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
-        database: "ebdb"
-    };
-
-    let sessionStore = new MySQLStore(options);
-
-    app.use(session({
-        secret: 'kurwa',
-        store: sessionStore,
-        resave: false,
-        saveUninitialized: false
-    }));
-
+    keys = require('./config/keys');
 }
+
+let options = {
+    host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+    user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+    password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
+    database: "ebdb"
+};
+
+let sessionStore = new MySQLStore(options);
+
+app.use(session({
+    secret: 'kurwa',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
 
 //initialize passport
 app.use(passport.initialize());
