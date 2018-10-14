@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer');
 const mysql = require('mysql');
+const passport = require('passport');
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), (req, res) => {

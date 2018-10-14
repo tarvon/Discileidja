@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+const passport = require('passport');
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), (req, res) => {
