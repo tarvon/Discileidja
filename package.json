@@ -17,6 +17,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-fileupload": "^1.0.0-alpha.1",
+    "express-mysql-session": "^2.0.1",
+    "express-session": "^1.15.6",
     "fallback": "^1.0.1",
     "fallbackjs": "^1.1.8",
     "formidable": "^1.2.1",

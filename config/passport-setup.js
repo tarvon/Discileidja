@@ -35,10 +35,8 @@ passport.deserializeUser(function(id, done){
         //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
         connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
             if (err) {
-                console.log("kurwa");
                 return console.error(err.message);
             }
-            console.log(FoundUser);
             let UserID = FoundUser[0].id;
             done(null, UserID);
             connection.release();

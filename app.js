@@ -6,9 +6,11 @@ var logger = require('morgan');
 const http = require('http');
 const passportSetup = require('./config/passport-setup');
 const bodyParser = require('body-parser');
-const cookieSession = require('cookie-session');
+//const cookieSession = require('cookie-session');
 const passport = require('passport');
 const multer = require('multer');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
@@ -27,11 +29,22 @@ var app = express();
 if (process.env.NODE_ENV !== 'production'){
     const keys = require('./config/keys');
 
-    app.use(cookieSession({
-        maxAge: 24 * 60 * 60 * 1000,
-        keys: [process.env.CookieSessionKey || keys.session.cookieKey]
+    let options = {
+        host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+        user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+        password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
+        database: "ebdb"
+    };
 
+    let sessionStore = new MySQLStore(options);
+
+    app.use(session({
+        secret: 'kurwa',
+        store: sessionStore,
+        resave: false,
+        saveUninitialized: false
     }));
+
 }
 
 //initialize passport
