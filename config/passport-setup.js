@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const mysql = require('mysql');
+const nodemailer = require('nodemailer');
 
 let keys = "";
 
@@ -16,6 +17,29 @@ let pool        = mysql.createPool({
     password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
     database: "ebdb"
 });
+
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    service: 'mail.ee',
+    auth: {
+        user: process.env.MAIL_USERNAME || keys.MAIL.username,
+        pass: process.env.MAIL_PASSWORD || keys.MAIL.password
+    },
+    tls: {
+        rejectUnauthorized:false
+    }
+});
+
+// setup email data with unicode symbols
+let mailOptions = {
+    from: '"Discileidja" <discileidja@mail.ee>', // sender address
+    to: 'bar@example.com', // list of receivers
+    subject: 'Registreerimine õnnestus', // Subject line
+    text: 'Oled registreerunud Discileidja kasutajaks', // plain text body
+};
+
+
 
 passport.serializeUser(function(user, done){
 
@@ -87,12 +111,24 @@ passport.use(new GoogleStrategy({
                         console.log('New user ID:' + newUser.insertId);
                         let CreatedUserDbId = newUser.insertId;
 
+
+
                         //find created user
                         connection.query(sqlCreatedUser, CreatedUserDbId,  (err, CreatedUser, fields) =>  {
                             if (err) {
                                 return console.error(err.message);
                             }
                             console.log('Created user',  CreatedUser);
+
+                            //nodemailer upon registration
+                            mailOptions.to = CreatedUser[0].Email;
+                            transporter.sendMail(mailOptions, (error, info) => {
+                                if (error) {
+                                    return console.log(error);
+                                }
+                                console.log('Message sent: %s', info.messageId);
+                            });
+
                             done(null, CreatedUser);
                             connection.release();
                         });
