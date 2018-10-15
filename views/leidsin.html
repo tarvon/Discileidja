@@ -2,6 +2,8 @@
 <html lang="et">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Leitud discgolfi ketta tagastamine">
+    <meta name="keywords" content="discgolf, leitud ketas, kaotatud ketas">
     <title>Discileidja</title>
     <link rel="icon" href="images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,7 +44,7 @@
 <header>
     <h1 class="page-header nav header-main"><a href="/index" style="text-decoration:none; color:white">Discileidja</a></h1>
 </header>
-<nav class="text-center navbar navbar-expand-lg navbar-light bg-light">
+<nav class="text-center navbar navbar-expand-lg navbar-light bg-light" about="main navigation">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,9 +78,9 @@
     <p class="text-holder-center">Kui oled leidnud võõra ketta, siis siia saad sisestada leitud ketta andmed.<br>
         Kõige tähtsam on lisada rada, kust ketas leiti, kuid võimalusel lisa palun kogu info.</p>
     <hr>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" about="Leitud ketta andmete sisestamine">
         <div class="form-group">
-            <label>Rada <i class="fa fa-info-circle" data-toggle="modal" data-target="#modalKaart" style="cursor: pointer;">TEST</i></label>
+            <label data-toggle="tooltip" title="Märgi siia rada, kust antud ketta leidsid">Rada</label> <i class="fa fa-info-circle" data-toggle="modal" data-target="#modalKaart" style="cursor: pointer;">(Vaata radade kaarti)</i>
             <select id="asukoht" name="asukoht" class="form-control" required>
                 <option value="Vooremäe">Vooremäe</option>
                 <option value="Tartu Dendropark">Tartu Dendropark</option>
@@ -123,27 +125,27 @@
             -->
         </div>
         <div class="form-group">
-            <label for="nimi">Nimi</label>
+            <label for="nimi" data-toggle="tooltip" title="Kui kettal on märgitud omaniku nimi, lisa see siia">Nimi kettal</label>
             <input type="text" id="nimi" name="nimi" class="form-control" placeholder="Lisa discil olev nimi">
         </div>
         <div class="form-group">
-            <label for="number">Number</label>
+            <label for="number" data-toggle="tooltip" title="Kui ketta omanik on lisanud oma telefoninumbri, kirjuta see siia">Number</label>
             <input type="text" id="number" name="number" class="form-control">
         </div>
         <div class="form-group">
-            <label for="värvus">Värvus</label>
+            <label for="värvus" data-toggle="tooltip" title="Ketta värvus">Värvus</label>
             <input type="text" id="värvus" name="värvus" class="form-control">
         </div>
         <div class="form-group">
-            <label for="tootja">Tootja</label>
+            <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas see on">Tootja</label>
             <input type="text" id="tootja" name="tootja" class="form-control">
         </div>
         <div class="form-group">
-            <label for="mudel">Mudel</label>
+            <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
             <input type="text" id="mudel" name="mudel" class="form-control">
         </div>
         <div class="form-group">
-            <label for="lisainfo">Lisainfo</label>
+            <label for="lisainfo" data-toggle="tooltip" title="Kui kettal on muid eristavaid omadusi (täkked, kleepsud vmt), märgi need siia">Lisainfo</label>
             <textarea name="lisainfo" id="lisainfo" cols="30" rows="10" class="form-control"></textarea>
         </div>
         <div class="form-group">
@@ -194,5 +196,6 @@
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Hhc6tzYIKAG--AJEK2HfhLbJvlFYGcE&callback=myMap"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>
