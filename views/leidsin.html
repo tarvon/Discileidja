@@ -92,9 +92,6 @@
                     </div>
                 </div>
             </div>
-            <!--
-            <input type="text" id="rada" name="rada" class="form-control" placeholder="test">
-            -->
         </div>
         <div class="form-group">
             <label for="nimi" data-toggle="tooltip" title="Kui kettal on märgitud omaniku nimi, lisa see siia">Nimi kettal</label>
@@ -127,46 +124,7 @@
         <button type="submit" class="btn btn-toolbar mb-5">Lisa ketas</button>
     </form>
 </div>
-<script>
-    function myMap() {
-        var vooremäe = {lat: 58.284462, lng: 26.891569};
-        var infoVooremäe = "Vooremäe";
-
-        var dendropark = {lat: 58.393514, lng: 26.698580};
-        var infoDendro = "Tartu Dendropark";
-
-        var infowindow = new google.maps.InfoWindow({
-            content: infoVooremäe, infoDendro
-        });
-
-        var mapProp= {
-            center:new google.maps.LatLng({lat: 58.377099, lng: 26.722102}),
-            zoom:9,
-        };
-
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-        var markerDendro = new google.maps.Marker({
-            position: dendropark,
-            map: map,
-            title: 'Tartu Dendropark'
-        });
-
-        var markerVooremäe = new google.maps.Marker({
-            position: vooremäe,
-            map: map,
-            title: 'Vooremäe'
-        });
-    }
-</script>
-<script>
-    function muudaMuu(){
-        var uusAsukoht = document.getElementById('muuRada').value;
-        var muu = document.getElementById('muu').value = uusAsukoht;
-
-        document.getElementById("muu").innerHTML = "Muu - "+uusAsukoht;
-    }
-</script>
+<script src="/js/leidsin.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Hhc6tzYIKAG--AJEK2HfhLbJvlFYGcE&callback=myMap"></script>
 <script src="/js/custom.js"></script>
 </body>
