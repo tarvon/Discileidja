@@ -1,4 +1,4 @@
-
+/* LOGIN view*/
 .login-box {
     background: #fff;
     padding: 20px;
@@ -123,10 +123,11 @@
     transition: all .3s ease;
 }
 
+/* eof LOGIN view*/
+
 .big-banner{
-    background-image: url("../images/taust.jpg");
     background-size:100% auto;
-    background-repeat: no-repeat;
+    background: url("../images/taust.jpg") no-repeat;
     position:fixed;
     padding:0;
     margin:0;
@@ -137,7 +138,7 @@
 .header-main{
     justify-content: center;
     background: darkgreen;
-    color: white;
+    color: white ;
     padding: 0.32em;
 }
 
@@ -156,4 +157,12 @@ form {
 .header-main a {
     text-decoration:none;
     color:white
+}
+.form-small {
+    display: inline-block;
+    margin: 0 2.5rem;
+}
+.form-small label {
+    display: block;
+
 }

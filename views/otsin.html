@@ -44,7 +44,38 @@
         </ul>
     </div>
 </nav>
-<p>Siia tuleb kadunud ketta otsing!</p>
 
+<div class="container">
+    <p></p>
+    <p class="text-holder-center">Kui oled oma ketta ära kaotanud, proovi otsida siit oma ketast.</p>
+    <hr>
+    <form method="post" enctype="multipart/form-data" about="Kaotatud ketta otsing">
+        <div class="form-group form-small">
+            <label for="rada">Rada, kus ketas kaotati</label>
+            <input type="text" id="rada" name="rada" class="form-control form-narrow">
+        </div>
+        <div class="form-group form-small">
+            <label for="nimi" data-toggle="tooltip" title="Kui kettal on sinu nimi, kirjuta see siia">Nimi kettal</label>
+            <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
+        </div>
+        <div class="form-group form-small">
+            <label for="number" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Number</label>
+            <input type="text" id="number" name="number" class="form-control form-narrow">
+        </div>
+        <div class="form-group form-small">
+            <label for="värvus" data-toggle="tooltip" title="Kaotatud ketta värvus">Värvus</label>
+            <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
+        </div>
+        <div class="form-group form-small">
+            <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas on">Tootja</label>
+            <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
+        </div>
+        <div class="form-group form-small">
+            <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
+            <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
+        </div>
+        <button type="submit" class="btn btn-toolbar mb-5">Otsi ketast</button>
+    </form>
+</div>
 </body>
 </html>
