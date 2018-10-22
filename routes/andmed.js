@@ -51,12 +51,13 @@ router.get('/', authenticationMiddleware(), (req, res) => {
                 if (mudel != "") {
                     sql += "mudel='" + mudel + "' AND ";
                 }
+                sql = sql.substring(0, sql.length-4);
             }
         } else {
             var sql = "SELECT * FROM kadunudKettad";
         }
         if (err) throw err;
-        sql = sql.substring(0, sql.length-4);
+        console.log(sql);
         connection.query(sql, function (error, results, fields) {
 
             connection.release();
