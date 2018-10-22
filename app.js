@@ -81,7 +81,18 @@ app.post('/leidsin', (req, res) => {
     res.end();
 });
 
-app.get('/andmed', (req, res) => {
+
+/* otsin lehele andmete saamine */
+function authenticationMiddleware () {
+    return (req, res, next) => {
+        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+        if (req.isAuthenticated()) return next();
+        res.redirect('/auth/login')
+    }
+}
+
+app.get('/andmed', authenticationMiddleware(), (req, res) => {
     let pool = mysql.createPool({
         connectionLimit : 10, // default = 10
         host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
