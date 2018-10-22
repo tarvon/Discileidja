@@ -20,7 +20,53 @@ let pool = mysql.createPool({
 
 /* Send database info */
 router.get('/', authenticationMiddleware(), (req, res) => {
-    getDB(req.query, res);
+    pool.getConnection(function (err, connection) {
+        if ( typeof req.query.rada !== 'undefined' ) {
+            var rada = req.query.rada;
+            var nimi = req.query.nimi;
+            var number = req.query.number;
+            var värvus = req.query.värvus;
+            var tootja = req.query.tootja;
+            var mudel = req.query.mudel;
+
+            if(mudel == "" && tootja == "" && värvus == "" && number == "" && nimi == "" && rada == ""){
+                var sql = "SELECT * FROM kadunudKettad";
+            } else {
+                var sql = "SELECT * FROM kadunudKettad WHERE ";
+                if (rada != "") {
+                    sql += "rada='" + rada + "' AND ";
+                }
+                if (nimi != "") {
+                    sql += "nimi='" + nimi + "' AND ";
+                }
+                if (number != "") {
+                    sql += "discinumber='" + number + "' AND ";
+                }
+                if (värvus != "") {
+                    sql += "värvus='" + värvus + "' AND ";
+                }
+                if (tootja != "") {
+                    sql += "tootja='" + tootja + "' AND ";
+                }
+                if (mudel != "") {
+                    sql += "mudel='" + mudel + "' AND ";
+                }
+            }
+        } else {
+            var sql = "SELECT * FROM kadunudKettad";
+        }
+        if (err) throw err;
+        sql = sql.substring(0, sql.length-4);
+        connection.query(sql, function (error, results, fields) {
+
+            connection.release();
+            if(error){
+                throw error;
+            } else {
+                res.send(results);
+            }
+        });
+    });
 });
 
 function authenticationMiddleware () {
