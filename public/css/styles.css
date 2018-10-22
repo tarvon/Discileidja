@@ -166,3 +166,11 @@ form {
     display: block;
 
 }
+.searchResults {
+    margin-left:auto;
+    margin-right:auto;
+    width: 90%;
+}
+.searchResults td {
+    width: 5%;
+}

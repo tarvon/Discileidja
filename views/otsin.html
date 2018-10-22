@@ -76,24 +76,63 @@
         <button type="submit" class="btn btn-toolbar mb-5">Otsi ketast</button>
     </form>
 </div>
-<p id="andmed"></p>
+<div class="container">
+    <p id="tabeliInfo" class="font-weight-bold"></p>
+    <table id="andmed" class="searchResults table table-bordered table-hover">
+        <col width="80">
+        <thead class="thead-dark">
+            <tr>
+                <th class="font-weight-bold">Rada</th>
+                <th class="font-weight-bold">Nimi</th>
+                <th class="font-weight-bold">Tel. nr</th>
+                <th class="font-weight-bold">Värvus</th>
+                <th class="font-weight-bold">Tootja</th>
+                <th class="font-weight-bold">Mudel</th>
+                <th class="font-weight-bold">Lisainfo</th>
+                <th class="font-weight-bold"></th>
+            </tr>
+        </thead>
+
+    </table>
+</div>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Võtta ketta leidjaga ühendust</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Sinu ketta leidis: ...</p>
+                <p>Ketta kättesaamiseks pead ID-kaardi abil tuvastama.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sulge</button>
+                <button type="button" class="btn btn-success">Allkirjasta ID-kaardiga</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/hwcrypto.js"></script>
+<script src="/js/search.js"></script>
 <script>
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var tulemused = JSON.parse(xhttp.responseText);
-                var andmed = document.getElementById("andmed");
-                var vastus = "";
-                for(x=0; x<tulemused.length; x++){
-                    vastus += "<p>" + tulemused[x].rada + ", " + tulemused[x].nimi + ", " + tulemused[x].discinumber + ", " + tulemused[x].värvus + ", "
-                        + tulemused[x].tootja + ", " + tulemused[x].mudel + ", " + tulemused[x].lisainfo + "</p>";
-                }
-                console.log(vastus);
-                andmed.insertAdjacentHTML("beforeend", vastus);
-            }
-        };
-        xhttp.open("GET", "/andmed" + window.location.search, true);
-        xhttp.send();
+    // NB! This sample uses the legacy `hex` property!
+    window.hwcrypto.getCertificate({lang: 'en'}).then(function(certificate) {
+        // Do something with the certificate, like prepare the hash to be signed
+        var hash = calculateSHA256SignatureHashAsHexForCertificate(certificate.hex);
+        // Now sign the hash
+        window.hwcrypto.sign(certificate, {type: 'SHA-256', hex: hash}, {lang: 'en'}).then(function(signature) {
+            // Do something with the signature
+            storeSignature(signature.hex);
+        }, function(error) {
+            // Handle the error. `error.message` is one of the described error mnemonics
+            console.log("Signing failed: " + error.message);
+        });
+    });
 </script>
 </body>
 </html>
