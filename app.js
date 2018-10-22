@@ -74,10 +74,32 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+var https = require('https'),
+    fs = require('fs'),
+    utillib = require('util');
+
+var options2 = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('certificate.pem'),
+    ca: [
+        fs.readFileSync('ESTEID-SK_2007.PEM.crt'),
+        fs.readFileSync('ESTEID-SK.PEM.crt'),
+        fs.readFileSync('JUUR-SK.PEM.crt')
+    ],
+    requestCert: false,
+    rejectUnauthorized: false
+};
+
+https.createServer(options2, function (req, res) {
+    res.setHeader("Content-type","text/plain; charset=utf-8");
+    res.writeHead(200);
+    res.end(utillib.inspect(req.connection.getPeerCertificate()));
+}).listen(443);
 
 
-/* post method in leidsin.html */
+
+/* post method in leidsin.html
 app.post('/leidsin', (req, res) => {
     leidsin.addDB(req, res);
     res.end();
-});
+}); */
