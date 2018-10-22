@@ -11,6 +11,7 @@ const passport = require('passport');
 const multer = require('multer');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
+const mysql = require('mysql');
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
@@ -74,8 +75,65 @@ server.listen(port, hostname, () => {
 
 
 
-/* post method on leidsin.html */
+/* post method in leidsin.html */
 app.post('/leidsin', (req, res) => {
     leidsin.addDB(req, res);
     res.end();
+});
+
+app.get('/andmed', (req, res) => {
+    let pool = mysql.createPool({
+        connectionLimit : 10, // default = 10
+        host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
+        user: process.env.RDS_USERNAME || keys.AWSRDS.username,
+        password: process.env.RDS_PASSWORD || keys.AWSRDS.password,
+        database: "ebdb"
+    });
+
+    getDB(req.query, res);
+
+    function getDB(data, res){
+        pool.getConnection(function (err, connection) {
+            if ( typeof data.rada !== 'undefined' ) {
+                var rada = data.rada;
+                var nimi = data.nimi;
+                var number = data.number;
+                var värvus = data.värvus;
+                var tootja = data.tootja;
+                var mudel = data.mudel;
+
+                var sql = "SELECT * FROM kadunudKettad WHERE ";
+                if (rada != "") {
+                    sql += "rada='" + rada + "' ";
+                }
+                if (nimi != "") {
+                    sql += "nimi='" + nimi + "' ";
+                }
+                if (number != "") {
+                    sql += "discinumber='" + number + "' ";
+                }
+                if (värvus != "") {
+                    sql += "värvus='" + värvus + "' ";
+                }
+                if (tootja != "") {
+                    sql += "tootja='" + tootja + "' ";
+                }
+                if (mudel != "") {
+                    sql += "mudel='" + mudel + "' ";
+                }
+            } else {
+                var sql = "SELECT * FROM kadunudKettad";
+            }
+            if (err) throw err;
+            connection.query(sql, function (error, results, fields) {
+
+                connection.release();
+                if(error){
+                    throw error;
+                } else {
+                    res.send(results);
+                }
+            });
+        });
+    }
 });

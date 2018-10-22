@@ -10,7 +10,6 @@
     <link href="/css/styles.css" rel="stylesheet" media="all" >
     <script src="/js/fallback.min.js"></script>
     <script src="/js/CDNfallback.js"></script>
-
 </head>
 <body>
 <header>
@@ -49,7 +48,7 @@
     <p></p>
     <p class="text-holder-center">Kui oled oma ketta ära kaotanud, proovi otsida siit oma ketast.</p>
     <hr>
-    <form method="post" enctype="multipart/form-data" about="Kaotatud ketta otsing">
+    <form method="get" action="/otsin" about="Kaotatud ketta otsing">
         <div class="form-group form-small">
             <label for="rada">Rada, kus ketas kaotati</label>
             <input type="text" id="rada" name="rada" class="form-control form-narrow">
@@ -77,5 +76,24 @@
         <button type="submit" class="btn btn-toolbar mb-5">Otsi ketast</button>
     </form>
 </div>
+<p id="andmed"></p>
+<script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var tulemused = JSON.parse(xhttp.responseText);
+                var andmed = document.getElementById("andmed");
+                var vastus = "";
+                for(x=0; x<tulemused.length; x++){
+                    vastus += "<p>" + tulemused[x].rada + ", " + tulemused[x].nimi + ", " + tulemused[x].discinumber + ", " + tulemused[x].värvus + ", "
+                        + tulemused[x].tootja + ", " + tulemused[x].mudel + ", " + tulemused[x].lisainfo + "</p>";
+                }
+                console.log(vastus);
+                andmed.insertAdjacentHTML("beforeend", vastus);
+            }
+        };
+        xhttp.open("GET", "/andmed" + window.location.search, true);
+        xhttp.send();
+</script>
 </body>
 </html>
