@@ -81,11 +81,11 @@ var https = require('https'),
 var options2 = {
     key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('certificate.pem'),
-    ca: [
+    /*ca: [
         fs.readFileSync('ESTEID-SK_2007.PEM.crt'),
         fs.readFileSync('ESTEID-SK.PEM.crt'),
         fs.readFileSync('JUUR-SK.PEM.crt')
-    ],
+    ],*/
     requestCert: false,
     rejectUnauthorized: false
 };
