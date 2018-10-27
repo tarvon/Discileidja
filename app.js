@@ -42,16 +42,22 @@ let options = {
 
 let sessionStore = new MySQLStore(options);
 
-app.use(session({
+let sess = {
     secret: 'kurwa',
     store: sessionStore,
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: false,
+    cookie: {}
+};
+
+if (process.env.NODE_ENV !== 'production'){
+    app.set('trust proxy', 1);
+    sess.cookie.secure = true
+}
 
 //initialize passport
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session(sess));
 
 app.use('/auth', authRouter);
 app.use('/', homeRouter);
