@@ -1,6 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-const FacebookStrategy = require('passport-facebook').Strategy;
+const FacebookStrategy = require('passport-facebook');
 const mysql = require('mysql');
 const nodemailer = require('nodemailer');
 
@@ -143,7 +143,7 @@ passport.use(new GoogleStrategy({
 ));
 
 
-passport.use(new GoogleStrategy({
+passport.use(new FacebookStrategy({
         clientID: process.env.FacebookClientID || keys.facebook.clientID,
         clientSecret: process.env.FacebookClientSecret || keys.facebook.clientSecret,
         callbackURL: "/auth/facebook/redirect",
