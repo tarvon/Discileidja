@@ -27,4 +27,16 @@ router.get('/google/redirect', passport.authenticate('google'),(req, res) =>{
     req.session.returnTo = null;
 });
 
+// auth with facebook
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['profile', 'email']
+}));
+
+// callback route for facebook to redirect to
+router.get('/facebook/redirect', passport.authenticate('facebook'),(req, res) =>{
+    //res.send('you reached the callback URI')
+    res.redirect(req.session.returnTo || '/index/'); //redirect to user page selection after login
+    req.session.returnTo = null;
+});
+
 module.exports = router;
