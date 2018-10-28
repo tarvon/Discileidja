@@ -27,6 +27,8 @@ var leidsin = require('./lib/leidsin');
 
 var app = express();
 
+app.enable("trust proxy");
+
 let keys = "";
 
 if (process.env.NODE_ENV !== 'production'){

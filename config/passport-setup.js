@@ -71,7 +71,8 @@ passport.deserializeUser(function(id, done){
 passport.use(new GoogleStrategy({
         clientID: process.env.GoogleClientID || keys.google.clientID,
         clientSecret: process.env.GoogleClientSecret || keys.google.clientSecret,
-        callbackURL: "/auth/google/redirect"
+        callbackURL: "/auth/google/redirect",
+        proxy: true
     },
     function(accessToken, refreshToken, profile, done) {
 
