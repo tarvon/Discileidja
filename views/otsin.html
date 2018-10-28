@@ -48,7 +48,7 @@
     <p></p>
     <p class="text-holder-center">Kui oled oma ketta ära kaotanud, proovi otsida siit oma ketast.</p>
     <hr>
-    <form method="get" action="/otsin" about="Kaotatud ketta otsing">
+    <div about="Kaotatud ketta otsing">
         <div class="form-group form-small">
             <label for="rada">Rada, kus ketas kaotati</label>
             <input type="text" id="rada" name="rada" class="form-control form-narrow">
@@ -58,8 +58,8 @@
             <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
         </div>
         <div class="form-group form-small">
-            <label for="number" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Number</label>
-            <input type="text" id="number" name="number" class="form-control form-narrow">
+            <label for="discinumber" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Number</label>
+            <input type="text" id="discinumber" name="discinumber" class="form-control form-narrow">
         </div>
         <div class="form-group form-small">
             <label for="värvus" data-toggle="tooltip" title="Kaotatud ketta värvus">Värvus</label>
@@ -73,8 +73,8 @@
             <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
             <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
         </div>
-        <button type="submit" class="btn btn-toolbar mb-5">Otsi ketast</button>
-    </form>
+        <button onclick="buttonSend()" class="btn btn-toolbar mb-5">Otsi ketast</button>
+    </div>
 </div>
 <div class="container">
     <p id="tabeliInfo" class="font-weight-bold"></p>
@@ -92,7 +92,6 @@
                 <th class="font-weight-bold"></th>
             </tr>
         </thead>
-
     </table>
 </div>
 
@@ -117,7 +116,6 @@
         </div>
     </div>
 </div>
-
 <script src="/js/hwcrypto.js"></script>
 <script src="/js/search.js"></script>
 <script>
