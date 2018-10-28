@@ -72,7 +72,7 @@ passport.use(new GoogleStrategy({
         clientID: process.env.GoogleClientID || keys.google.clientID,
         clientSecret: process.env.GoogleClientSecret || keys.google.clientSecret,
         callbackURL: "/auth/google/redirect",
-        proxy: true
+        proxy: true //for HTTPS
     },
     function(accessToken, refreshToken, profile, done) {
 

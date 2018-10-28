@@ -27,6 +27,7 @@ var leidsin = require('./lib/leidsin');
 
 var app = express();
 
+//Tell express that HTTPS is used in Nginx
 app.enable("trust proxy");
 
 let keys = "";
