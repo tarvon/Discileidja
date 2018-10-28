@@ -7,7 +7,7 @@ if(window.location.hash == ""){
 function buttonSend(){
     var rada = document.getElementById('rada').value;
     var nimi = document.getElementById('nimi').value;
-    var discinumber = document.getElementById('discinumber').value;
+    var telefoninumber = document.getElementById('telefoninumber').value;
     var värvus = document.getElementById('värvus').value;
     var tootja = document.getElementById('tootja').value;
     var mudel = document.getElementById('mudel').value;
@@ -16,7 +16,7 @@ function buttonSend(){
 
     if(rada != "") {get += "rada=" + rada + "&"};
     if(nimi != "") {get += "nimi=" + nimi + "&"};
-    if(discinumber != "") {get += "discinumber=" + discinumber + "&"};
+    if(telefoninumber != "") {get += "telefoninumber=" + telefoninumber + "&"};
     if(värvus != "") {get += "värvus=" + värvus + "&"};
     if(tootja != "") {get += "tootja=" + tootja + "&"};
     if(mudel != "") {get += "mudel=" + mudel + "&"};
@@ -42,8 +42,8 @@ function getData(hash) {
             if(typeof otsing.nimi != 'undefined'){
                 document.getElementById('nimi').value = otsing.nimi;
             }
-            if(typeof otsing.discinumber != 'undefined'){
-                document.getElementById('discinumber').value = otsing.discinumber;
+            if(typeof otsing.telefoninumber != 'undefined'){
+                document.getElementById('telefoninumber').value = otsing.telefoninumber;
             }
             if(typeof otsing.värvus != 'undefined'){
                 document.getElementById('värvus').value = otsing.värvus;
@@ -82,7 +82,7 @@ function getData(hash) {
                     nimi = "-"
                 }
                 ;
-                var nr = tulemused[x].discinumber;
+                var nr = tulemused[x].telefoninumber;
                 if (nr == 0) {
                     nr = "-"
                 }

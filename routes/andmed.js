@@ -23,16 +23,16 @@ router.get('/', authenticationMiddleware(), (req, res) => {
     pool.getConnection(function (err, connection) {
         var rada = req.query.rada;
         var nimi = req.query.nimi;
-        var discinumber = req.query.discinumber;
+        var telefoninumber = req.query.telefoninumber;
         var värvus = req.query.värvus;
         var tootja = req.query.tootja;
         var mudel = req.query.mudel;
 
-        if(mudel == undefined && tootja == undefined && värvus == undefined && discinumber == undefined && nimi == undefined && rada == undefined){
+        if(mudel == undefined && tootja == undefined && värvus == undefined && telefoninumber == undefined && nimi == undefined && rada == undefined){
             var otsing = [{}];
             var sql = "SELECT * FROM kadunudKettad";
         }else{
-            var otsing = [{'rada':rada, 'nimi':nimi, 'discinumber':discinumber, 'värvus':värvus, 'tootja':tootja, 'mudel':mudel}];
+            var otsing = [{'rada':rada, 'nimi':nimi, 'telefoninumber':telefoninumber, 'värvus':värvus, 'tootja':tootja, 'mudel':mudel}];
 
             var sql = "SELECT * FROM kadunudKettad WHERE ";
             if (rada != "" && typeof rada != 'undefined') {
@@ -41,8 +41,8 @@ router.get('/', authenticationMiddleware(), (req, res) => {
             if (nimi != "" && typeof nimi != 'undefined') {
                 sql += "nimi='" + nimi + "' AND ";
             }
-            if (discinumber != "" && typeof discinumber != 'undefined') {
-                sql += "discinumber='" + discinumber + "' AND ";
+            if (telefoninumber != "" && typeof telefoninumber != 'undefined') {
+                sql += "telefoninumber='" + telefoninumber + "' AND ";
             }
             if (värvus != "" && typeof värvus != 'undefined') {
                 sql += "värvus='" + värvus + "' AND ";
