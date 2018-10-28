@@ -147,6 +147,7 @@ passport.use(new FacebookStrategy({
         clientID: process.env.FacebookClientID || keys.facebook.clientID,
         clientSecret: process.env.FacebookClientSecret || keys.facebook.clientSecret,
         callbackURL: "/auth/facebook/redirect",
+        profileFields: ['id', 'displayName', 'email', 'givenName', 'familyName'],
         proxy: true //for HTTPS
     },
     function(accessToken, refreshToken, profile, done) {
