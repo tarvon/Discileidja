@@ -1,5 +1,3 @@
-console.log("kurwa");
-
 fallback.load({
     JSON: '//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js',
     BootstrapCSS: [

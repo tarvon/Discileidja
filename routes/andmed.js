@@ -73,6 +73,7 @@ function authenticationMiddleware () {
         console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
+        req.session.returnTo = req.originalUrl;
         res.redirect('/auth/login')
     }
 }

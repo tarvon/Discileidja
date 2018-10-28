@@ -27,6 +27,21 @@ var leidsin = require('./lib/leidsin');
 
 var app = express();
 
+//Tell express that HTTPS is used in Nginx
+//https://stackoverflow.com/questions/20739744/passportjs-callback-switch-between-http-and-https
+app.enable("trust proxy");
+
+// Redirect to HTTPS
+app.use(function (req, res, next) {
+    // Insecure request?
+    if (req.get('x-forwarded-proto') === 'http') {
+        // Redirect to https://
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+
+    next();
+});
+
 let keys = "";
 
 if (process.env.NODE_ENV !== 'production'){
