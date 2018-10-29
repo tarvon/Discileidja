@@ -90,7 +90,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // collect visitor data
 app.use(function (req, res, next) {
     let date = new Date();
-    let currentDate = date.getFullYear() + "/" + date.getMonth()+1 + "/" + date.getDate();
+    let currentDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
     let currentTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
     let browserDetectResult = browser(req.headers['user-agent']);
