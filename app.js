@@ -6,6 +6,8 @@ var MySQLStore = require('express-mysql-session')(session)
 const ipinfo = require("ipinfo");
 const browser = require('browser-detect');
 const mysql = require("mysql");
+require('./config/passport-setup');
+
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
@@ -123,6 +125,7 @@ const server = app.listen(port, () => {
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
+
 
 /*var https = require('https'),
     fs = require('fs'),
