@@ -97,10 +97,7 @@ app.use(function (req, res, next) {
     let currentBrowser = browserDetectResult.name;
     let currentos = browserDetectResult.os;
 
-    let ipa = (req.headers['x-forwarded-for'] || '').split(',').pop() ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress;
+    let ipa = req.header('x-forwarded-for') || req.connection.remoteAddress;
 
     console.log(ipa);
 

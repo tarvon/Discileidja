@@ -55,7 +55,6 @@ passport.deserializeUser(function(id, done){
         if (err) {
             return console.error('error: ' + err.message);
         }
-        console.log('Connected to the MySQL server=1');
 
         //let sqlDeserializeUser = "SELECT * FROM users WHERE Id=?";
         connection.query("SELECT * FROM users WHERE Id=?", id,  (err, FoundUser, fields) =>  {
@@ -81,7 +80,6 @@ passport.use(new GoogleStrategy({
             if (err) {
                 return console.error('error: ' + err.message);
             }
-            console.log('Connected to the MySQL server=2');
 
             let query1 = profile.id;
             let query2 = profile.displayName;
@@ -156,7 +154,6 @@ passport.use(new FacebookStrategy({
             if (err) {
                 return console.error('error: ' + err.message);
             }
-            console.log('Connected to the MySQL server=2');
 
             let query1 = profile.id;
             let query2 = profile.displayName;
