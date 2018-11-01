@@ -28,7 +28,7 @@ var app = express();
 
 //Tell express that HTTPS is used in Nginx
 //https://stackoverflow.com/questions/20739744/passportjs-callback-switch-between-http-and-https
-app.enable("trust proxy");
+app.set('trust proxy', 2);
 
 let keys = "";
 
@@ -98,7 +98,7 @@ app.use(function (req, res, next) {
     let currentBrowser = browserDetectResult.name;
     let currentos = browserDetectResult.os;
 
-    let ipa = req.ipInfo;
+    let ipa = req.ip;
 
     console.log(ipa);
 
