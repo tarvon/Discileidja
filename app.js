@@ -7,7 +7,7 @@ const ipinfo = require("ipinfo");
 const browser = require('browser-detect');
 const mysql = require("mysql");
 require('./config/passport-setup');
-
+const expressip = require('express-ip');
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
@@ -86,6 +86,7 @@ app.use('/andmed', andmedRouter);
 app.use('/stats', statsRouter);
 app.use('/statsGET', statsGETRouter);
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(expressip().getIpInfoMiddleware);
 
 // collect visitor data
 app.use(function (req, res, next) {
@@ -97,10 +98,7 @@ app.use(function (req, res, next) {
     let currentBrowser = browserDetectResult.name;
     let currentos = browserDetectResult.os;
 
-    let ipa = (req.headers['x-forwarded-for'] || '').split(',').pop() ||
-        req.connection.remoteAddress ||
-        req.socket.remoteAddress ||
-        req.connection.socket.remoteAddress
+    let ipa = req.ipInfo;
 
     console.log(ipa);
 
