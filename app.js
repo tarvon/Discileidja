@@ -89,48 +89,49 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(expressip().getIpInfoMiddleware);
 
 // collect visitor data
-app.use(function (req, res, next) {
+if (process.env.NODE_ENV === 'production'){
+    app.use(function (req, res, next) {
 
-    //helping function for adding 0 values to date objects
-    function pad(value) {
-        if(value < 10) {
-            return '0' + value;
-        } else {
-            return value;
+        //helping function for adding 0 values to date objects
+        function pad(value) {
+            if(value < 10) {
+                return '0' + value;
+            } else {
+                return value;
+            }
         }
-    }
 
-    let date = new Date();
-    let currentDate = date.getFullYear() + "/" + pad(date.getMonth()+1) + "/" + pad(date.getDate());
-    let currentTime = pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
+        let date = new Date();
+        let currentDate = date.getFullYear() + "/" + pad(date.getMonth()+1) + "/" + pad(date.getDate());
+        let currentTime = pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
 
-    let browserDetectResult = browser(req.headers['user-agent']);
-    let currentBrowser = browserDetectResult.name;
-    let currentos = browserDetectResult.os;
+        let browserDetectResult = browser(req.headers['user-agent']);
+        let currentBrowser = browserDetectResult.name;
+        let currentos = browserDetectResult.os;
 
-    let ipa = req.ip;
+        let ipa = req.ip;
 
-    console.log(ipa);
+        //https://stackoverflow.com/questions/7139369/remote-ip-address-with-node-js-behind-amazon-elb
+        ipinfo(ipa, (err, cLoc) => {
 
-    //https://stackoverflow.com/questions/7139369/remote-ip-address-with-node-js-behind-amazon-elb
-    ipinfo(ipa, (err, cLoc) => {
+            let city = cLoc.city;
+            let country = cLoc.country;
+            let hostname = cLoc.hostname;
+            let ip = cLoc.ip;
 
-        let city = cLoc.city;
-        let country = cLoc.country;
-        let hostname = cLoc.hostname;
-        let ip = cLoc.ip;
+            let sqlVisitor = "INSERT INTO visitors(date,time,city,country,hostname,ip,browser,os) " +
+                "VALUES ('"+currentDate+"','"+currentTime+"','"+city+"','"+country+"','"+hostname+"','"+ip+"','"+currentBrowser+"','"+currentos+"')";
 
-        let sqlVisitor = "INSERT INTO visitors(date,time,city,country,hostname,ip,browser,os) " +
-            "VALUES ('"+currentDate+"','"+currentTime+"','"+city+"','"+country+"','"+hostname+"','"+ip+"','"+currentBrowser+"','"+currentos+"')";
-
-        pool.getConnection(function(err, connection) {
-            connection.query(sqlVisitor, function (error, results, fields) {
-                connection.release();
-                if (error) throw error;
+            pool.getConnection(function(err, connection) {
+                connection.query(sqlVisitor, function (error, results, fields) {
+                    connection.release();
+                    if (error) throw error;
+                });
             });
         });
     });
-});
+}
+
 
 module.exports = app;
 
