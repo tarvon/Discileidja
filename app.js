@@ -97,7 +97,14 @@ app.use(function (req, res, next) {
     let currentBrowser = browserDetectResult.name;
     let currentos = browserDetectResult.os;
 
-    ipinfo((err, cLoc) => {
+    let ipa = (req.headers['x-forwarded-for'] || '').split(',').pop() ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+
+    console.log(ipa);
+
+    ipinfo(ipa, (err, cLoc) => {
 
         let city = cLoc.city;
         let country = cLoc.country;
