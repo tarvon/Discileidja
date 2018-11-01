@@ -22,7 +22,7 @@ let pool = mysql.createPool({
 /* Send database info */
 router.get('/',authenticationMiddleware(), (req, res) => {
 
-    let visitors = "SELECT date, time, city, country, ip FROM visitors;";
+    let visitors = "SELECT date, time, city, country, ip, hostname FROM visitors;";
     pool.getConnection(function(err, connection) {
         connection.query(visitors, function (error, results, fields) {
             connection.release();

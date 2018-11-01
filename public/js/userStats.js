@@ -12,7 +12,7 @@ xhttp.onreadystatechange = function() {
             var riik = tulemused[x].country ;
             var ip = tulemused[x].ip ;
             let host = tulemused[x].hostname;
-            vastus += "<tr><td>" + date + time + "</td><td>" + linn + "</td><td>" + riik + "</td><td>" + ip + "</td><td>" + host;
+            vastus += "<tr><td>" + date + " " + time + "</td><td>" + linn + "</td><td>" + riik + "</td><td>" + ip + "</td><td>" + host;
         }
         console.log(vastus);
         andmed.insertAdjacentHTML("beforeend", vastus);
