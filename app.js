@@ -90,9 +90,19 @@ app.use(expressip().getIpInfoMiddleware);
 
 // collect visitor data
 app.use(function (req, res, next) {
+
+    //helping function for adding 0 values to date objects
+    function pad(value) {
+        if(value < 10) {
+            return '0' + value;
+        } else {
+            return value;
+        }
+    }
+
     let date = new Date();
-    let currentDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
-    let currentTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    let currentDate = date.getFullYear() + "/" + pad(date.getMonth()+1) + "/" + pad(date.getDate());
+    let currentTime = pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
 
     let browserDetectResult = browser(req.headers['user-agent']);
     let currentBrowser = browserDetectResult.name;
@@ -102,6 +112,7 @@ app.use(function (req, res, next) {
 
     console.log(ipa);
 
+    //https://stackoverflow.com/questions/7139369/remote-ip-address-with-node-js-behind-amazon-elb
     ipinfo(ipa, (err, cLoc) => {
 
         let city = cLoc.city;
