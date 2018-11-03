@@ -28,7 +28,6 @@ function buttonSend(){
 }
 
 function getData(hash) {
-    console.log(hash);
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {

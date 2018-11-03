@@ -143,6 +143,11 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+/* post method in leidsin.html */
+app.post('/leidsin', (req, res) => {
+    leidsin.addDB(req, res);
+    res.end();
+});
 
 /*var https = require('https'),
     fs = require('fs'),
@@ -168,8 +173,4 @@ https.createServer(options2, function (req, res) {
 
 
 
- post method in leidsin.html
-app.post('/leidsin', (req, res) => {
-    leidsin.addDB(req, res);
-    res.end();
-}); */
+ */
