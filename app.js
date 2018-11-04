@@ -29,6 +29,7 @@ var foundRouter = require('./routes/found');
 var lostRouter = require('./routes/lost');
 var helpRouter = require('./routes/help');
 var profileRouter = require('./routes/profile');
+var enHomeRouter = require('./routes/en_home');
 
 var app = express();
 
@@ -99,6 +100,7 @@ app.use('/en/found', foundRouter);
 app.use('/en/lost', lostRouter);
 app.use('/en/help', helpRouter);
 app.use('/en/profile', profileRouter);
+app.use('/en/home', enHomeRouter);
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(expressip().getIpInfoMiddleware);
