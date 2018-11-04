@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Leitud discgolfi ketta tagastamine">
     <meta name="keywords" content="discgolf, leitud ketas, kaotatud ketas">
-    <title>Discileidja: leidsin ketta</title>
+    <title>Discileidja: found disc</title>
     <link rel="icon" href="images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/css/styles.css" rel="stylesheet" media="all" >
@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <h1 class="page-header nav header-main"><a href="/index">Discileidja</a></h1>
+    <h1 class="page-header nav header-main"><a href="/en">Discileidja</a></h1>
 </header>
 <nav class="text-center navbar navbar-expand-lg navbar-light bg-light" about="main navigation">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,25 +23,25 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <p class="nav-link active">Leidsin</p>
+                <a class="nav-link" href="found">Found<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/otsin">Otsin</a>
+                <a class="nav-link" href="lost">Lost</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/abi">Abi</a>
+                <a class="nav-link" href="help">Help</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Profiil
+                    Profile
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/profiil">Seaded</a>
-                    <a class="dropdown-item" href="/auth/logout">Logi välja</a>
+                    <a class="dropdown-item" href="profile">Settings</a>
+                    <a class="dropdown-item" href="/auth/logout">Log out</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/en/found"><img src="/images/united-kingdom-flag-button-round-icon-64.png"></a>
+                <a class="nav-link" href="/index"><img src="/images/estonia-flag-button-round-icon-64.png"></a>
             </li>
         </ul>
     </div>
@@ -49,17 +49,17 @@
 </nav>
 <div class="container">
     <p></p>
-    <p class="text-holder-center">Kui oled leidnud võõra ketta, siis siia saad sisestada leitud ketta andmed.<br>
-        Kõige tähtsam on lisada rada, kust ketas leiti, kuid võimalusel lisa palun kogu info.</p>
+    <p class="text-holder-center">If you have found a disc, please fill out the attributes of the disc here.<br>
+        The most imporstant one is the course, where the disc was found, but try to be as specific as possible with the rest aswell.</p>
     <hr>
     <div id="vastusAlert" class="container"></div>
     <form id="lisamiseForm" action="javascript:void(0);">
         <div class="form-group">
-            <label data-toggle="tooltip" title="Märgi siia rada, kust antud ketta leidsid">Rada</label> <i class="fa fa-info-circle" data-toggle="modal" data-target="#modalKaart" style="cursor: pointer;">(Vaata radade kaarti)</i>
+            <label data-toggle="tooltip" title="Where did you find the disc?">Course</label> <i class="fa fa-info-circle" data-toggle="modal" data-target="#modalKaart" style="cursor: pointer;">(Check on the map)</i>
             <select id="rada" name="rada" class="form-control" required>
                 <option value="Vooremäe">Vooremäe</option>
                 <option value="Tartu Dendropark">Tartu Dendropark</option>
-                <option value="muu" id="muu" data-toggle="modal" data-target="#modalMuu">Muu</option>
+                <option value="muu" id="muu" data-toggle="modal" data-target="#modalMuu">Other</option>
             </select>
 
             <!-- MUU VALIKU MODAL -->
@@ -67,14 +67,14 @@
                 <div class="modal-dialog" role="button">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Lisa muu rada</h5>
+                            <h5 class="modal-title">Add another course</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <input type="text" id="muuRada" name="muuRada" class="form-control">
-                            <button type="button" class="btn btn-primary mt-3" onclick="muudaMuu()" data-dismiss="modal" aria-label="Close">Sisesta</button>
+                            <button type="button" class="btn btn-primary mt-3" onclick="muudaMuu()" data-dismiss="modal" aria-label="Close">Add</button>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Radade asukohad</h5>
+                            <h5 class="modal-title">Courses</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -97,35 +97,35 @@
                 </div>
             </div>
 
-        <div class="form-group">
-            <label for="nimi" data-toggle="tooltip" title="Kui kettal on märgitud omaniku nimi, lisa see siia">Nimi kettal</label>
-            <input type="text" id="nimi" name="nimi" class="form-control" placeholder="Lisa discil olev nimi">
-        </div>
-        <div class="form-group">
-            <label for="telefoninumber" data-toggle="tooltip" title="Kui ketta omanik on lisanud oma telefoninumbri, kirjuta see siia">Number</label>
-            <input type="text" id="telefoninumber" name="telefoninumber" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="värvus" data-toggle="tooltip" title="Ketta värvus">Värvus</label>
-            <input type="text" id="värvus" name="värvus" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas see on">Tootja</label>
-            <input type="text" id="tootja" name="tootja" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
-            <input type="text" id="mudel" name="mudel" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="lisainfo" data-toggle="tooltip" title="Kui kettal on muid eristavaid omadusi (täkked, kleepsud vmt), märgi need siia">Lisainfo</label>
-            <textarea name="lisainfo" id="lisainfo" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="pilt">Pilt</label>
-            <input type="file" id="pilt" name="pilt" accept="image"  class="form-control-file">
-        </div>
-        <button onclick="saada()" class="btn btn-toolbar mb-5">Lisa ketas</button>
+            <div class="form-group">
+                <label for="nimi" data-toggle="tooltip" title="If person has signed the disc, write it here">Name on the disc</label>
+                <input type="text" id="nimi" name="nimi" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="telefoninumber" data-toggle="tooltip" title="If person has added his/her phone nr on the disc, write it here">Phone numberumber</label>
+                <input type="text" id="telefoninumber" name="telefoninumber" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="värvus" data-toggle="tooltip" title="Color of the disc">Color</label>
+                <input type="text" id="värvus" name="värvus" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="tootja" data-toggle="tooltip" title="Which company has manufactured the disc?">Manufacturer</label>
+                <input type="text" id="tootja" name="tootja" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="mudel" data-toggle="tooltip" title="What's the model of the disc?">Model</label>
+                <input type="text" id="mudel" name="mudel" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="lisainfo" data-toggle="tooltip" title="Any specific info">Other comments</label>
+                <textarea name="lisainfo" id="lisainfo" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pilt">Picture</label>
+                <input type="file" id="pilt" name="pilt" accept="image"  class="form-control-file">
+            </div>
+            <button onclick="saada()" class="btn btn-toolbar mb-5">Add disc</button>
         </div>
     </form>
 

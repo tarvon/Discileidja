@@ -1,11 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const multer = require('multer');
+const mysql = require('mysql');
 const passport = require('passport');
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/en', 'index.html'));
+    res.sendFile(path.join(__dirname, '../views/en', 'found.html'));
 });
 
 function authenticationMiddleware () {
@@ -19,5 +21,3 @@ function authenticationMiddleware () {
 }
 
 module.exports = router;
-
-

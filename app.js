@@ -25,6 +25,10 @@ var statsRouter = require('./routes/stats');
 var statsGETRouter = require('./routes/statsGET');
 
 var enRouter = require('./routes/en');
+var foundRouter = require('./routes/found');
+var lostRouter = require('./routes/lost');
+var helpRouter = require('./routes/help');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -91,6 +95,10 @@ app.use('/stats', statsRouter);
 app.use('/statsGET', statsGETRouter);
 
 app.use('/en', enRouter);
+app.use('/en/found', foundRouter);
+app.use('/en/lost', lostRouter);
+app.use('/en/help', helpRouter);
+app.use('/en/profile', profileRouter);
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(expressip().getIpInfoMiddleware);

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Discileidja kodulehekülg">
+    <meta name="description" content="Discileidja korduma kippuvad küsimused">
     <meta name="keywords" content="discgolf, leitud ketas, kaotatud ketas, eesti discgolf">
-    <title>Discileidja</title>
+    <title>Discileidja: KKK</title>
     <link rel="icon" href="images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="/css/styles.css" rel="stylesheet" media="all" >
     <script src="/js/fallback.min.js"></script>
     <script src="/js/CDNfallback.js"></script>
-
 </head>
-<body class="big-banner">
+<body>
 <header>
-    <h1 class="page-header nav header-main">Discileidja</h1>
+    <h1 class="page-header nav header-main"><a href="/en">Discileidja</a></h1>
 </header>
 <nav class="text-center navbar navbar-expand-lg navbar-light bg-light" about="main navigation">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,27 +23,41 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="en/found">Found<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="found">Found<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="en/lost">Lost</a>
+                <a class="nav-link" href="lost">Lost</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="en/help">Help</a>
+                <a class="nav-link" href="help">Help</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="en/profile">Settings</a>
+                    <a class="dropdown-item" href="profile">Settings</a>
                     <a class="dropdown-item" href="/auth/logout">Log out</a>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/abi"><img src="/images/estonia-flag-button-round-icon-64.png"></a>
             </li>
         </ul>
     </div>
 </nav>
-
-
+<div class="container">
+    <br>
+    <h4>Frequently asked questions</h4>
+    <p><b>I found a disc - what should I do?</b>
+        <br>
+        If you have found someone's disc, you should go to the <a href="found">Found a disc</a> page and insert all the features of the disc. Then the owner of the disc can find it and contact you directly!
+    </p>
+    <p><b>How can I look for my lost disc?</b>
+        <br>
+        If you have lost a disc, go to our <a href="lost">Lost a disc</a> page. Search for our disc there and you'll be able to contact the finder after you identify yourself.
+    </p>
+</div>
+<script>    $.fn.modal || document.write('<script src="/js/bootstrap.min.js">\x3C/script>')</script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Discileidja konto kasutajatunnused">
+    <meta name="keywords" content="discgolf, leitud ketas, kaotatud ketas, eesti discgolf, kasutaja, konto">
+    <title>Discileidja: profiil</title>
+    <link rel="icon" href="images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/styles.css" rel="stylesheet" media="all" >
+    <script src="/js/fallback.min.js"></script>
+    <script src="/js/CDNfallback.js"></script>
+</head>
+<body>
+<header>
+    <h1 class="page-header nav header-main"><a href="/en">Discileidja</a></h1>
+</header>
+<nav class="text-center navbar navbar-expand-lg navbar-light bg-light" about="main navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--style="display: flex; justify-content: center; flex-wrap: wrap"-->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="found">Found<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="lost">Lost</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="help">Help</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="profile">Settings</a>
+                    <a class="dropdown-item" href="/auth/logout">Log out</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/profiil"><img src="/images/estonia-flag-button-round-icon-64.png"></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Your Profile</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="form-group row">
+                                    <label for="name" class="col-4 col-form-label">First Name</label>
+                                    <div class="col-8">
+                                        <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                                    <div class="col-8">
+                                        <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email" class="col-4 col-form-label">Email*</label>
+                                    <div class="col-8">
+                                        <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                        <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
