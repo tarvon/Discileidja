@@ -21,50 +21,48 @@ let pool = mysql.createPool({
 /* Send database info */
 router.get('/', authenticationMiddleware(), (req, res) => {
     pool.getConnection(function (err, connection) {
-        if ( typeof req.query.rada !== 'undefined' ) {
-            var rada = req.query.rada;
-            var nimi = req.query.nimi;
-            var number = req.query.number;
-            var värvus = req.query.värvus;
-            var tootja = req.query.tootja;
-            var mudel = req.query.mudel;
+        var rada = req.query.rada;
+        var nimi = req.query.nimi;
+        var telefoninumber = req.query.telefoninumber;
+        var värvus = req.query.värvus;
+        var tootja = req.query.tootja;
+        var mudel = req.query.mudel;
 
-            if(mudel == "" && tootja == "" && värvus == "" && number == "" && nimi == "" && rada == ""){
-                var sql = "SELECT * FROM kadunudKettad";
-            } else {
-                var sql = "SELECT * FROM kadunudKettad WHERE ";
-                if (rada != "") {
-                    sql += "rada='" + rada + "' AND ";
-                }
-                if (nimi != "") {
-                    sql += "nimi='" + nimi + "' AND ";
-                }
-                if (number != "") {
-                    sql += "discinumber='" + number + "' AND ";
-                }
-                if (värvus != "") {
-                    sql += "värvus='" + värvus + "' AND ";
-                }
-                if (tootja != "") {
-                    sql += "tootja='" + tootja + "' AND ";
-                }
-                if (mudel != "") {
-                    sql += "mudel='" + mudel + "' AND ";
-                }
-                sql = sql.substring(0, sql.length-4);
-            }
-        } else {
+        if(mudel == undefined && tootja == undefined && värvus == undefined && telefoninumber == undefined && nimi == undefined && rada == undefined){
+            var otsing = [{}];
             var sql = "SELECT * FROM kadunudKettad";
+        }else{
+            var otsing = [{'rada':rada, 'nimi':nimi, 'telefoninumber':telefoninumber, 'värvus':värvus, 'tootja':tootja, 'mudel':mudel}];
+
+            var sql = "SELECT * FROM kadunudKettad WHERE ";
+            if (rada != "" && typeof rada != 'undefined') {
+                sql += "rada='" + rada + "' AND ";
+            }
+            if (nimi != "" && typeof nimi != 'undefined') {
+                sql += "nimi='" + nimi + "' AND ";
+            }
+            if (telefoninumber != "" && typeof telefoninumber != 'undefined') {
+                sql += "telefoninumber='" + telefoninumber + "' AND ";
+            }
+            if (värvus != "" && typeof värvus != 'undefined') {
+                sql += "värvus='" + värvus + "' AND ";
+            }
+            if (tootja != ""  && typeof tootja != 'undefined') {
+                sql += "tootja='" + tootja + "' AND ";
+            }
+            if (mudel != ""  && typeof mudel != 'undefined') {
+                sql += "mudel='" + mudel + "' AND ";
+            }
+            sql = sql.substring(0, sql.length-4);
         }
         if (err) throw err;
-        console.log(sql);
+        console.log("Otsin lehel otsiti: " + sql);
         connection.query(sql, function (error, results, fields) {
-
             connection.release();
             if(error){
                 throw error;
             } else {
-                res.send(results);
+                res.send(otsing.concat(results));
             }
         });
     });
@@ -75,57 +73,9 @@ function authenticationMiddleware () {
         console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
+        req.session.returnTo = req.originalUrl;
         res.redirect('/auth/login')
     }
 }
 
 module.exports = router;
-
-function getDB(data, res){
-    pool.getConnection(function (err, connection) {
-        if ( typeof data.rada !== 'undefined' ) {
-            var rada = data.rada;
-            var nimi = data.nimi;
-            var number = data.number;
-            var värvus = data.värvus;
-            var tootja = data.tootja;
-            var mudel = data.mudel;
-
-            if(mudel == "" && tootja == "" && värvus == "" && number == "" && nimi == "" && rada == ""){
-                var sql = "SELECT * FROM kadunudKettad";
-            } else {
-                var sql = "SELECT * FROM kadunudKettad WHERE ";
-                if (rada != "") {
-                    sql += "rada='" + rada + "' ";
-                }
-                if (nimi != "") {
-                    sql += "nimi='" + nimi + "' ";
-                }
-                if (number != "") {
-                    sql += "discinumber='" + number + "' ";
-                }
-                if (värvus != "") {
-                    sql += "värvus='" + värvus + "' ";
-                }
-                if (tootja != "") {
-                    sql += "tootja='" + tootja + "' ";
-                }
-                if (mudel != "") {
-                    sql += "mudel='" + mudel + "' ";
-                }
-            }
-        } else {
-            var sql = "SELECT * FROM kadunudKettad";
-        }
-        if (err) throw err;
-        connection.query(sql, function (error, results, fields) {
-
-            connection.release();
-            if(error){
-                throw error;
-            } else {
-                res.send(results);
-            }
-        });
-    });
-}

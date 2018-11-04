@@ -5,7 +5,7 @@ const passport = require('passport');
 
 /* GET home page. */
 router.get('/', authenticationMiddleware(), (req, res) => {
-    res.sendFile(path.join(__dirname, '../views', 'abi.html'));
+    res.sendFile(path.join(__dirname, '../views', 'stats.html'));
 });
 
 function authenticationMiddleware () {
@@ -17,5 +17,6 @@ function authenticationMiddleware () {
         res.redirect('/auth/login')
     }
 }
+
 
 module.exports = router;
