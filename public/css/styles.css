@@ -182,3 +182,8 @@ form {
     margin-bottom: 0 !important;
     max-height: 40px;
 }
+
+.navbar-nav img {
+    margin-top: -6px;
+    max-height: 24px;
+}

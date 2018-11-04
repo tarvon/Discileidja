@@ -24,6 +24,8 @@ var statsRouter = require('./routes/stats');
 var statsGETRouter = require('./routes/statsGET');
 var leidsin = require('./lib/leidsin');
 
+var enRouter = require('./routes/en');
+
 var app = express();
 
 //Tell express that HTTPS is used in Nginx
@@ -62,6 +64,7 @@ let options = {
     database: "ebdb"
 };
 
+
 let sessionStore = new MySQLStore(options);
 
 app.use(session({
@@ -85,8 +88,13 @@ app.use('/profiil', profiilRouter);
 app.use('/andmed', andmedRouter);
 app.use('/stats', statsRouter);
 app.use('/statsGET', statsGETRouter);
+
+app.use('/en', enRouter);
+
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(expressip().getIpInfoMiddleware);
+
+
 
 // collect visitor data
 if (process.env.NODE_ENV === 'production'){
