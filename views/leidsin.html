@@ -49,10 +49,11 @@
     <p class="text-holder-center">Kui oled leidnud võõra ketta, siis siia saad sisestada leitud ketta andmed.<br>
         Kõige tähtsam on lisada rada, kust ketas leiti, kuid võimalusel lisa palun kogu info.</p>
     <hr>
-    <form method="post" enctype="multipart/form-data" about="Leitud ketta andmete sisestamine">
+    <div id="vastusAlert" class="container"></div>
+    <form id="lisamiseForm" action="javascript:void(0);">
         <div class="form-group">
             <label data-toggle="tooltip" title="Märgi siia rada, kust antud ketta leidsid">Rada</label> <i class="fa fa-info-circle" data-toggle="modal" data-target="#modalKaart" style="cursor: pointer;">(Vaata radade kaarti)</i>
-            <select id="asukoht" name="asukoht" class="form-control" required>
+            <select id="rada" name="rada" class="form-control" required>
                 <option value="Vooremäe">Vooremäe</option>
                 <option value="Tartu Dendropark">Tartu Dendropark</option>
                 <option value="muu" id="muu" data-toggle="modal" data-target="#modalMuu">Muu</option>
@@ -92,15 +93,14 @@
                     </div>
                 </div>
             </div>
-        </div>
 
         <div class="form-group">
             <label for="nimi" data-toggle="tooltip" title="Kui kettal on märgitud omaniku nimi, lisa see siia">Nimi kettal</label>
             <input type="text" id="nimi" name="nimi" class="form-control" placeholder="Lisa discil olev nimi">
         </div>
         <div class="form-group">
-            <label for="number" data-toggle="tooltip" title="Kui ketta omanik on lisanud oma telefoninumbri, kirjuta see siia">Number</label>
-            <input type="text" id="number" name="number" class="form-control">
+            <label for="telefoninumber" data-toggle="tooltip" title="Kui ketta omanik on lisanud oma telefoninumbri, kirjuta see siia">Number</label>
+            <input type="text" id="telefoninumber" name="telefoninumber" class="form-control">
         </div>
         <div class="form-group">
             <label for="värvus" data-toggle="tooltip" title="Ketta värvus">Värvus</label>
@@ -122,8 +122,10 @@
             <label for="pilt">Pilt</label>
             <input type="file" id="pilt" name="pilt" accept="image"  class="form-control-file">
         </div>
-        <button type="submit" class="btn btn-toolbar mb-5">Lisa ketas</button>
+        <button onclick="saada()" class="btn btn-toolbar mb-5">Lisa ketas</button>
+        </div>
     </form>
+
 </div>
 <script src="/js/leidsin.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3Hhc6tzYIKAG--AJEK2HfhLbJvlFYGcE&callback=myMap"></script>

@@ -17,12 +17,12 @@ var homeRouter = require('./routes/home');
 var indexRouter = require('./routes/index');
 var abiRouter = require('./routes/abi');
 var leidsinRouter = require('./routes/leidsin');
+var leidsinPOSTRouter = require('./routes/leidsinPOST');
 var otsinRouter = require('./routes/otsin');
 var profiilRouter = require('./routes/profiil');
 var andmedRouter = require('./routes/andmed');
 var statsRouter = require('./routes/stats');
 var statsGETRouter = require('./routes/statsGET');
-var leidsin = require('./lib/leidsin');
 
 var enRouter = require('./routes/en');
 
@@ -83,6 +83,7 @@ app.use('/', homeRouter);
 app.use('/index', indexRouter);
 app.use('/abi', abiRouter);
 app.use('/leidsin', leidsinRouter);
+app.use('/leidsinPOST', leidsinPOSTRouter);
 app.use('/otsin', otsinRouter);
 app.use('/profiil', profiilRouter);
 app.use('/andmed', andmedRouter);
@@ -149,12 +150,6 @@ const server = app.listen(port, () => {
 
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
-});
-
-/* post method in leidsin.html */
-app.post('/leidsin', (req, res) => {
-    leidsin.addDB(req, res);
-    res.end();
 });
 
 /*var https = require('https'),

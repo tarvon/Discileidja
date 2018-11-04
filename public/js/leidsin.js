@@ -35,3 +35,38 @@ function myMap() {
         title: 'Vooremäe'
     });
 }
+
+function saada(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var vastusAlert = document.getElementById("vastusAlert");
+            if(this.responseText == ""){
+                vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
+            }else{
+                vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Ketta lisamisel tekkis viga!</div>";
+                console.log(this.responseText);
+            }
+        }
+    };
+
+    var info = {rada:document.getElementById('rada').value, nimi:document.getElementById('nimi').value,
+        telefoninumber: + document.getElementById('telefoninumber').value, värvus:document.getElementById('värvus').value,
+        tootja:document.getElementById('tootja').value, mudel:document.getElementById('mudel').value,
+        lisainfo:document.getElementById('lisainfo').value};
+
+    if(!isNaN(info.telefoninumber)){
+        xhttp.open("POST", "/leidsinPOST");
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(info));
+    }else{
+        var vastusAlert = document.getElementById("vastusAlert");
+        vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Telefoninumbris on viga!</div>";
+    }
+
+
+
+
+
+    //siia failiga tegelemine
+}
