@@ -109,7 +109,7 @@ app.use(expressip().getIpInfoMiddleware);
 
 
 
-// collect visitor data
+//collect visitor data
 if (process.env.NODE_ENV === 'production'){
     app.use(function (req, res, next) {
 
