@@ -42,18 +42,24 @@ function saada(){
         if (this.readyState == 4 && this.status == 200) {
             var vastusAlert = document.getElementById("vastusAlert");
             if(this.responseText == ""){
-                vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
+                if(document.getElementById('pilt').value != ""){
+                    saadafile(this.responseText);
+                }else{
+                    vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
+                }
             }else{
                 vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Ketta lisamisel tekkis viga!</div>";
-                console.log(this.responseText);
             }
         }
     };
+
+
 
     var info = {rada:document.getElementById('rada').value, nimi:document.getElementById('nimi').value,
         telefoninumber: + document.getElementById('telefoninumber').value, värvus:document.getElementById('värvus').value,
         tootja:document.getElementById('tootja').value, mudel:document.getElementById('mudel').value,
         lisainfo:document.getElementById('lisainfo').value};
+
 
     if(!isNaN(info.telefoninumber)){
         xhttp.open("POST", "/leidsinPOST");
@@ -63,10 +69,27 @@ function saada(){
         var vastusAlert = document.getElementById("vastusAlert");
         vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Telefoninumbris on viga!</div>";
     }
+}
 
+function saadafile(){
+    var xhttp = new XMLHttpRequest();
 
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var vastusAlert = document.getElementById("vastusAlert");
+            if(this.responseText == ""){
+                vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
+            }else{
+                vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Ketta lisamisel tekkis viga!</div>";
+            }
+        }
+    };
 
+    var pilt = document.getElementById('pilt');
+    var file = pilt.files[0];
+    var formData = new FormData();
+    formData.append('pilt', file);
 
-
-    //siia failiga tegelemine
+    xhttp.open("POST", "/imagePOST");
+    xhttp.send(formData);
 }
