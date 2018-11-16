@@ -52,30 +52,48 @@
     <p class="text-holder-center">Kui oled oma ketta ära kaotanud, proovi otsida siit oma ketast.</p>
     <hr>
     <div about="Kaotatud ketta otsing">
-        <div class="form-group form-small">
-            <label for="rada">Rada, kus ketas kaotati</label>
-            <input type="text" id="rada" name="rada" class="form-control form-narrow">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="rada">Rada, kus ketas kaotati</label>
+                    <input type="text" id="rada" name="rada" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="nimi" data-toggle="tooltip" title="Kui kettal on sinu nimi, kirjuta see siia">Nimi kettal</label>
+                    <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="telefoninumber" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Telefoninumber</label>
+                    <input type="text" id="telefoninumber" name="telefoninumber" class="form-control form-narrow">
+                </div>
+            </div>
         </div>
-        <div class="form-group form-small">
-            <label for="nimi" data-toggle="tooltip" title="Kui kettal on sinu nimi, kirjuta see siia">Nimi kettal</label>
-            <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="värvus" data-toggle="tooltip" title="Kaotatud ketta värvus">Värvus</label>
+                    <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas on">Tootja</label>
+                    <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
+                    <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
+                </div>
+            </div>
         </div>
-        <div class="form-group form-small">
-            <label for="telefoninumber" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Telefoninumber</label>
-            <input type="text" id="telefoninumber" name="telefoninumber" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="värvus" data-toggle="tooltip" title="Kaotatud ketta värvus">Värvus</label>
-            <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas on">Tootja</label>
-            <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
-            <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
-        </div>
+
+
         <button onclick="buttonSend()" class="btn btn-toolbar mb-5">Otsi ketast</button>
     </div>
 </div>

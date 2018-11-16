@@ -23,10 +23,10 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="found">Found<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="found">Found</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="lost">Lost</a>
+                <p class="nav-link active">Lost</p>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="help">Help</a>
@@ -52,30 +52,48 @@
     <p class="text-holder-center">If you have lost a disc, you can look for it here.</p>
     <hr>
     <div about="Kaotatud ketta otsing">
-        <div class="form-group form-small">
-            <label for="rada">Course, where the disc was lost</label>
-            <input type="text" id="rada" name="rada" class="form-control form-narrow">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="rada">Course, where the disc was lost</label>
+                    <input type="text" id="rada" name="rada" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="nimi">Name on the disc</label>
+                    <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="telefoninumber">Phone number</label>
+                    <input type="text" id="telefoninumber" name="telefoninumber" class="form-control form-narrow">
+                </div>
+            </div>
         </div>
-        <div class="form-group form-small">
-            <label for="nimi">Name on the disc</label>
-            <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="värvus">Color</label>
+                    <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tootja">Manufacturer</label>
+                    <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="mudel">Model</label>
+                    <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
+                </div>
+            </div>
         </div>
-        <div class="form-group form-small">
-            <label for="telefoninumber">Phone number</label>
-            <input type="text" id="telefoninumber" name="telefoninumber" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="värvus">Color</label>
-            <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="tootja">Manufacturer</label>
-            <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
-        </div>
-        <div class="form-group form-small">
-            <label for="mudel">Model</label>
-            <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
-        </div>
+
+
         <button onclick="buttonSend()" class="btn btn-toolbar mb-5">Search</button>
     </div>
 </div>
