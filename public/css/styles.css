@@ -10,6 +10,12 @@ div a {
 div a:hover {
     color: #1c7430;
 }
+
+#googleMap {
+    width: auto;
+    height: 20em;
+}
+
 /* LOGIN view*/
 .login-box {
     padding: 20px;
