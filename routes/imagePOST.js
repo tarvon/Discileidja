@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-const passport = require('passport');
 const multer = require('multer');
-const fs = require('fs');
 
 router.post('/', authenticationMiddleware(), (req, res) => {
     var storage = multer.diskStorage({
@@ -26,7 +24,6 @@ router.post('/', authenticationMiddleware(), (req, res) => {
     });
 });
 
-
 function authenticationMiddleware () {
     return (req, res, next) => {
         console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
@@ -38,4 +35,3 @@ function authenticationMiddleware () {
 }
 
 module.exports = router;
-
