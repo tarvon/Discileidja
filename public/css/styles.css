@@ -11,6 +11,16 @@ div a:hover {
     color: #1c7430;
 }
 
+.wrapper {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+}
+
+.footer img {
+    max-width:100%;
+}
+
 #googleMap {
     width: auto;
     height: 20em;
