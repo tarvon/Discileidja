@@ -42,10 +42,9 @@ function saada(){
         if (this.readyState == 4 && this.status == 200) {
             var vastusAlert = document.getElementById("vastusAlert");
             if(this.responseText == ""){
-                if('files' in document.getElementById('pilt')){
+                if(typeof document.getElementById('pilt').files[0] != 'undefined'){
                     saadafile();
                 }else{
-                    document.getElementById('lisamiseForm').reset();
                     vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
                 }
             }else{
@@ -77,7 +76,6 @@ function saadafile(){
         if (this.readyState == 4 && this.status == 200) {
             var vastusAlert = document.getElementById("vastusAlert");
             if(this.responseText == ""){
-                document.getElementById('lisamiseForm').reset();
                 vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
             }else{
                 vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Ketta lisamisel tekkis viga!</div>";
