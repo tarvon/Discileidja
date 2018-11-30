@@ -1,0 +1,1 @@
+$.fn.modal || document.write('<script src="/js/bootstrap.min.js">\x3C/script>')

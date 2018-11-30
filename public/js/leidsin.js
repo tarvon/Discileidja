@@ -42,9 +42,10 @@ function saada(){
         if (this.readyState == 4 && this.status == 200) {
             var vastusAlert = document.getElementById("vastusAlert");
             if(this.responseText == ""){
-                if(document.getElementById('pilt').value != ""){
-                    saadafile(this.responseText);
+                if('files' in document.getElementById('pilt')){
+                    saadafile();
                 }else{
+                    document.getElementById('lisamiseForm').reset();
                     vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
                 }
             }else{
@@ -52,8 +53,6 @@ function saada(){
             }
         }
     };
-
-
 
     var info = {rada:document.getElementById('rada').value, nimi:document.getElementById('nimi').value,
         telefoninumber: + document.getElementById('telefoninumber').value, värvus:document.getElementById('värvus').value,
@@ -78,6 +77,7 @@ function saadafile(){
         if (this.readyState == 4 && this.status == 200) {
             var vastusAlert = document.getElementById("vastusAlert");
             if(this.responseText == ""){
+                document.getElementById('lisamiseForm').reset();
                 vastusAlert.innerHTML = "<div class=\"alert alert-success\" role=\"alert\">Ketas lisatud!</div>";
             }else{
                 vastusAlert.innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">Ketta lisamisel tekkis viga!</div>";
