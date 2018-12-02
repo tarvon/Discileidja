@@ -1,9 +1,8 @@
 {
-  "name": "untitled",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "watch": "nodemon ./start.js"
+  "name": "discileidja",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.12.0"
   },
   "dependencies": {
     "aws-sdk": "^2.334.0",
