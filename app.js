@@ -8,6 +8,7 @@ const browser = require('browser-detect');
 const mysql = require("mysql");
 require('./config/passport-setup');
 const expressip = require('express-ip');
+const compression = require('compression');
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000; //aws: 8081 ; local: 3000
@@ -86,6 +87,7 @@ app.use(session({
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(compression());
 
 app.use('/auth', authRouter);
 app.use('/', homeRouter);
