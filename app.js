@@ -24,6 +24,9 @@ var profiilRouter = require('./routes/profiil');
 var andmedRouter = require('./routes/andmed');
 var statsRouter = require('./routes/stats');
 var statsGETRouter = require('./routes/statsGET');
+var endakettadRouter = require('./routes/endakettad');
+var endakettadPOSTRouter = require('./routes/endakettadPOST');
+var endakettadkustutaPOSTRouter = require('./routes/endakettadkustutaPOST');
 
 var enRouter = require('./routes/en');
 var foundRouter = require('./routes/found');
@@ -44,7 +47,7 @@ if (process.env.NODE_ENV !== 'production'){
     keys = require('./config/keys');
 }
 
-let pool        = mysql.createPool({
+let pool = mysql.createPool({
     connectionLimit : 10, // default = 10
     host: process.env.RDS_HOSTNAME || keys.AWSRDS.host,
     user: process.env.RDS_USERNAME || keys.AWSRDS.username,
@@ -96,6 +99,9 @@ app.use('/profiil', profiilRouter);
 app.use('/andmed', andmedRouter);
 app.use('/stats', statsRouter);
 app.use('/statsGET', statsGETRouter);
+app.use('/endakettad', endakettadRouter);
+app.use('/endakettadPOST', endakettadPOSTRouter);
+app.use('/endakettadkustutaPOST', endakettadkustutaPOSTRouter);
 
 app.use('/en', enRouter);
 app.use('/en/found', foundRouter);

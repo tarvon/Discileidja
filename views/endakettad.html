@@ -26,17 +26,17 @@
                 <a class="nav-link" href="/leidsin">Leidsin<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <p class="nav-link active">Otsin</p>
+                <a class="nav-link" href="/otsin">Otsin</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/abi">Abi</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle active" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profiil
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/endakettad">Enda lisatud kettad</a>
+                    <a class="dropdown-item" >Enda lisatud kettad</a>
                     <a class="dropdown-item" href="/profiil">Seaded</a>
                     <a class="dropdown-item" href="/">Logi välja</a>
                 </div>
@@ -48,55 +48,6 @@
     </div>
 </nav>
 
-<div class="container">
-    <p></p>
-    <p class="text-holder-center">Kui oled oma ketta ära kaotanud, proovi otsida siit oma ketast.</p>
-    <hr>
-    <div about="Kaotatud ketta otsing">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="rada">Rada, kus ketas kaotati</label>
-                    <input type="text" id="rada" name="rada" class="form-control form-narrow">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="nimi" data-toggle="tooltip" title="Kui kettal on sinu nimi, kirjuta see siia">Nimi kettal</label>
-                    <input type="text" id="nimi" name="nimi" class="form-control form-narrow">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="telefoninumber" data-toggle="tooltip" title="Kui kettal on sinu telefoninumber, kirjuta see siia">Telefoninumber</label>
-                    <input type="text" id="telefoninumber" name="telefoninumber" class="form-control form-narrow">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="värvus" data-toggle="tooltip" title="Kaotatud ketta värvus">Värvus</label>
-                    <input type="text" id="värvus" name="värvus" class="form-control form-narrow">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="tootja" data-toggle="tooltip" title="Kui saad, märgi kelle toodetud ketas on">Tootja</label>
-                    <input type="text" id="tootja" name="tootja" class="form-control form-narrow">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="mudel" data-toggle="tooltip" title="Kui saad, märgi ära ketta mudel">Mudel</label>
-                    <input type="text" id="mudel" name="mudel" class="form-control form-narrow">
-                </div>
-            </div>
-        </div>
-
-        <button onclick="buttonSend()" class="btn btn-toolbar mb-5">Otsi ketast</button>
-    </div>
-</div>
 <div class="container">
     <p id="tabeliInfo" class="font-weight-bold"></p>
     <table id="andmed" class="searchResults table table-bordered table-hover">
@@ -127,7 +78,7 @@
             </div>
             <div class="modal-body">
                 <p>Sinu ketta leidis: ...
-                <br>Ketta kättesaamiseks pead ID-kaardi abil tuvastama.
+                    <br>Ketta kättesaamiseks pead ID-kaardi abil tuvastama.
                 <p><input type="checkbox" name="confirm" required> Kinnitan, et olen antud ketta omanik.</p>
             </div>
             <div class="modal-footer">
@@ -138,6 +89,6 @@
     </div>
 </div>
 <script src="/js/hwcrypto.js"></script>
-<script src="/js/search.js"></script>
+<script src="/js/endakettad.js"></script>
 </body>
 </html>
